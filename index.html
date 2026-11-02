@@ -3,23 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0f1d33">
+<meta name="theme-color" content="#ffd6e4">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
 <title>상하이 야르렁 trip</title>
 <meta property="og:title" content="상하이 야르렁 trip">
 <meta property="og:description" content="11/21(토) ~ 11/23(월) 항공, 호텔, 일정, 필수 앱, 준비물 체크리스트">
 <style>
   :root {
-    --ink: #1b2333;
-    --muted: #5d6677;
-    --bg: #f5f2ec;
+    --ink: #3d2c3e;
+    --muted: #7a6474;
+    --bg: #fff5f7;
     --card: #ffffff;
-    --navy: #0f1d33;
-    --gold: #e3a94b;
+    --pink: #ff8fab;
+    --pink-deep: #cc3a68;
+    --pink-soft: #ffe3ec;
+    --mint: #7fd8b8;
+    --mint-soft: #e3f8ef;
+    --yellow: #ffd45e;
+    --yellow-soft: #fff6d6;
+    --lilac: #b9a3f5;
+    --lilac-soft: #efe9ff;
     --red: #c8423b;
-    --line: #e7e1d6;
-    --ok: #2f8f5b;
-    --radius: 14px;
+    --line: #f6dce4;
+    --ok: #3bb38a;
+    --radius: 20px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 64px; }
@@ -27,92 +34,144 @@
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
     color: var(--ink);
-    background: var(--bg);
+    background: var(--bg) radial-gradient(#ffd9e3 1.3px, transparent 1.3px) 0 0 / 18px 18px;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
     word-break: keep-all;
     overflow-wrap: break-word;
   }
   .zh, .zh-inline { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", sans-serif; word-break: normal; }
-  a { color: #1d5fbf; }
+  a { color: var(--pink-deep); }
   main { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
 
   header.hero {
-    background: linear-gradient(180deg, #0b1526 0%, #16294a 70%, #1f3762 100%);
-    color: #fff;
-    padding: 28px 20px 0;
+    position: relative;
+    background: linear-gradient(180deg, #ffd6e4 0%, #ffe8ef 100%);
+    color: var(--ink);
+    padding: 34px 20px 0;
     text-align: center;
     overflow: hidden;
   }
-  .hero .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .08em; font-size: 13px; }
-  .hero h1 { margin: 6px 0 4px; font-size: 30px; }
-  .hero .dates { opacity: .85; font-size: 15px; }
-  .hero .dday {
-    display: inline-block; margin-top: 12px; padding: 6px 16px; border-radius: 999px;
-    background: var(--gold); color: var(--navy); font-weight: 800; font-size: 18px;
+  /* 아래쪽 가장자리를 배경색 반원으로 덮어 물결 모양을 만든다 */
+  header.hero::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 12px;
+    background: radial-gradient(circle at 10px 12px, var(--bg) 9px, transparent 10px) 0 0 / 20px 12px repeat-x;
   }
-  .hero svg { display: block; width: 100%; max-width: 520px; margin: 14px auto 0; }
+  .hero > :not(.stickers) { position: relative; }
+  .hero .eyebrow { color: var(--pink-deep); font-weight: 800; letter-spacing: .14em; font-size: 13px; }
+  .hero h1 {
+    margin: 8px 0 6px; font-size: clamp(30px, 9vw, 40px); font-weight: 900; letter-spacing: -.01em; line-height: 1.25;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff, 0 3px 0 #fff, 4px 6px 0 var(--pink);
+  }
+  .hero .dates { color: var(--muted); font-size: 15px; font-weight: 700; }
+  .hero .dday {
+    display: inline-block; margin-top: 14px; padding: 6px 22px; border-radius: 999px;
+    background: #fff; color: var(--pink-deep); border: 3px solid var(--pink);
+    font-weight: 900; font-size: 22px; box-shadow: 0 4px 0 var(--pink);
+    animation: bob 2.6s ease-in-out infinite;
+  }
+  .stickers span {
+    position: absolute; font-size: 30px; line-height: 1;
+    filter: drop-shadow(0 3px 0 rgba(204, 58, 104, .18));
+    animation: float 4.5s ease-in-out infinite;
+  }
+  .stickers span:nth-child(1) { left: 5%; top: 16px; }
+  .stickers span:nth-child(2) { right: 6%; top: 12px; animation-delay: -1.2s; }
+  .stickers span:nth-child(3) { left: 6%; top: 128px; animation-delay: -2.1s; font-size: 26px; }
+  .stickers span:nth-child(4) { right: 6%; top: 132px; animation-delay: -.6s; }
+  .stickers span:nth-child(5) { left: 17%; top: 186px; animation-delay: -3s; font-size: 26px; }
+  .stickers span:nth-child(6) { right: 16%; top: 190px; animation-delay: -1.7s; font-size: 26px; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-8px) rotate(8deg); }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stickers span, .hero .dday { animation: none; }
+  }
+  .hero svg { display: block; width: 100%; max-width: 520px; margin: 18px auto 0; }
+  .hero svg g:nth-of-type(1) { fill: rgba(185, 163, 245, .38); }
+  .hero svg g:nth-of-type(2) { fill: var(--pink); }
+  .hero svg g:nth-of-type(3) { fill: #fff; stroke: #f7b3c6; stroke-width: 1.2; }
+  .hero svg > rect:nth-of-type(1) { fill: #ffe4ec; }
+  .hero svg > rect:nth-of-type(2) { fill: var(--pink); }
 
   nav.chips {
     position: sticky; top: 0; z-index: 10;
-    background: rgba(245, 242, 236, .96);
+    background: rgba(255, 245, 247, .95);
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 2px solid var(--pink-soft);
     display: flex; gap: 6px; overflow-x: auto; padding: 10px 12px;
     scrollbar-width: none;
   }
   nav.chips::-webkit-scrollbar { display: none; }
   nav.chips a {
     flex: 0 0 auto; text-decoration: none; color: var(--ink);
-    background: #fff; border: 1px solid var(--line); border-radius: 999px;
-    padding: 5px 12px; font-size: 14px; font-weight: 600;
+    background: #fff; border: 2px solid var(--pink-soft); border-radius: 999px;
+    padding: 4px 12px; font-size: 14px; font-weight: 700;
   }
+  nav.chips a:hover, nav.chips a:active { background: var(--pink-soft); }
 
-  section { margin-top: 28px; }
-  h2 { font-size: 21px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
-  h2 .num { background: var(--navy); color: #fff; font-size: 13px; border-radius: 6px; padding: 1px 7px; }
+  section { margin-top: 32px; }
+  main > section:nth-of-type(4n+1) { --accent: var(--pink); --accent-soft: var(--pink-soft); }
+  main > section:nth-of-type(4n+2) { --accent: var(--mint); --accent-soft: var(--mint-soft); }
+  main > section:nth-of-type(4n+3) { --accent: var(--yellow); --accent-soft: var(--yellow-soft); }
+  main > section:nth-of-type(4n) { --accent: var(--lilac); --accent-soft: var(--lilac-soft); }
+  h2 { font-size: 22px; font-weight: 900; margin: 0 0 14px; display: flex; align-items: center; gap: 10px; }
+  h2 .num {
+    display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
+    background: var(--accent-soft); box-shadow: 0 3px 0 var(--accent); font-size: 19px; transform: rotate(-8deg);
+  }
   h3 { font-size: 17px; margin: 0 0 6px; }
   .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(15, 29, 51, .05);
+    background: var(--card); border: 2px solid var(--accent-soft, var(--line)); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 14px; box-shadow: 0 4px 0 var(--accent-soft, var(--line));
   }
   .muted { color: var(--muted); font-size: 14px; }
   .small { font-size: 13px; }
   .note {
-    background: #fff8ea; border: 1px solid #f1d9a8; border-radius: 10px;
+    background: var(--yellow-soft); border: 2px dashed #f5d77e; border-radius: 14px;
     padding: 10px 12px; font-size: 14px; margin-top: 10px;
   }
   .warn {
-    background: #fdeeed; border: 1px solid #f2c3bf; border-radius: 10px;
+    background: #fff0f3; border: 2px dashed #ffb3c6; border-radius: 14px;
     padding: 10px 12px; font-size: 14px; margin-top: 10px;
   }
   .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; box-shadow: 0 1px 3px rgba(15, 29, 51, .05); }
+  .tile { background: var(--card); border-radius: var(--radius); padding: 12px 14px; }
+  .tile:nth-child(1) { background: var(--pink-soft); transform: rotate(-1.2deg); }
+  .tile:nth-child(2) { background: var(--mint-soft); transform: rotate(1deg); }
+  .tile:nth-child(3) { background: var(--yellow-soft); transform: rotate(1.2deg); }
+  .tile:nth-child(4) { background: var(--lilac-soft); transform: rotate(-1deg); }
   .tile .label { font-size: 12px; color: var(--muted); font-weight: 700; }
   .tile .value { font-size: 16px; font-weight: 700; margin-top: 2px; }
   .tile .sub { font-size: 13px; color: var(--muted); }
 
   .flight .route { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0 6px; }
   .flight .end { text-align: center; min-width: 92px; }
-  .flight .code { font-size: 26px; font-weight: 800; letter-spacing: .02em; }
+  .flight .code { font-size: 28px; font-weight: 900; letter-spacing: .02em; }
   .flight .time { font-size: 18px; font-weight: 700; }
   .flight .place { font-size: 13px; color: var(--muted); }
-  .flight .line { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 6px, transparent 6px 12px); position: relative; }
-  .flight .line::after { content: "✈"; position: absolute; left: 50%; top: -13px; transform: translateX(-50%); font-size: 18px; color: var(--navy); }
-  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #eef2f8; color: #2a4a7a; }
-  .badge.red { background: #fdeeed; color: var(--red); }
-  .badge.gold { background: #fbf0dc; color: #8a5a10; }
+  .flight .line { flex: 1; height: 3px; background: repeating-linear-gradient(90deg, var(--pink) 0 6px, transparent 6px 12px); border-radius: 3px; position: relative; }
+  .flight .line::after { content: "✈"; position: absolute; left: 50%; top: -14px; transform: translateX(-50%); font-size: 20px; color: var(--pink-deep); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 999px; background: var(--mint-soft); color: #1f7a5a; }
+  .badge.red { background: var(--pink-soft); color: var(--pink-deep); }
+  .badge.gold { background: var(--yellow-soft); color: #8a5a10; }
 
   dl.kv { display: grid; grid-template-columns: 86px 1fr; gap: 6px 10px; margin: 10px 0 0; font-size: 15px; }
   dl.kv dt { color: var(--muted); font-weight: 600; }
   dl.kv dd { margin: 0; }
   .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .btn {
-    appearance: none; border: 1px solid var(--navy); background: var(--navy); color: #fff;
-    border-radius: 10px; padding: 8px 14px; font-size: 14px; font-weight: 700; cursor: pointer;
-    text-decoration: none; font-family: inherit;
+    appearance: none; border: 2px solid var(--pink-deep); background: var(--pink-deep); color: #fff;
+    border-radius: 999px; padding: 7px 16px; font-size: 14px; font-weight: 800; cursor: pointer;
+    text-decoration: none; font-family: inherit; box-shadow: 0 3px 0 #9e2a50;
   }
-  .btn.ghost { background: #fff; color: var(--navy); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9e2a50; }
+  .btn.ghost { background: #fff; color: var(--pink-deep); box-shadow: 0 3px 0 var(--pink-soft); }
 
   .line10 { display: flex; flex-wrap: wrap; gap: 4px 0; align-items: center; margin-top: 10px; font-size: 13px; }
   .line10 .st { background: #fff; border: 2px solid #c9a7e8; border-radius: 999px; padding: 2px 8px; }
@@ -120,18 +179,21 @@
   .line10 .gap { color: #7b4bb3; padding: 0 4px; }
 
   .day { margin-bottom: 18px; }
+  #plan .day:nth-of-type(2) { --accent: var(--pink); }
+  #plan .day:nth-of-type(3) { --accent: var(--mint); }
+  #plan .day:nth-of-type(4) { --accent: var(--yellow); }
   .day-head {
-    display: flex; align-items: baseline; gap: 10px; background: var(--navy); color: #fff;
+    display: flex; align-items: baseline; gap: 10px; background: var(--accent); color: var(--ink);
     border-radius: var(--radius) var(--radius) 0 0; padding: 12px 16px;
   }
-  .day-head .d { color: var(--gold); font-weight: 800; }
-  .day-head .t { font-weight: 700; }
-  .day-body { background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--radius) var(--radius); padding: 6px 16px 12px; }
+  .day-head .d { font-weight: 900; background: #fff; border-radius: 999px; padding: 0 10px; }
+  .day-head .t { font-weight: 800; }
+  .day-body { background: #fff; border: 2px solid var(--accent); border-top: 0; border-radius: 0 0 var(--radius) var(--radius); padding: 6px 16px 12px; }
   .day-body .empty { color: var(--muted); font-size: 14px; margin: 10px 0; }
   .slots { border-bottom: 1px solid var(--line); margin-bottom: 4px; }
   .slot { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
   .slot:last-child { border-bottom: 0; }
-  .slot .when { font-weight: 800; font-size: 15px; color: var(--navy); }
+  .slot .when { font-weight: 900; font-size: 15px; color: var(--pink-deep); }
   .slot .what b { font-size: 15px; }
   .slot .what p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
   .places { list-style: none; margin: 8px 0 0; padding: 0; }
@@ -146,7 +208,7 @@
   .comments .c-body { font-size: 15px; white-space: pre-wrap; }
   .c-form { display: grid; gap: 8px; margin-top: 12px; }
   .c-form input, .c-form textarea {
-    font: inherit; font-size: 16px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; width: 100%; background: #fcfbf8;
+    font: inherit; font-size: 16px; padding: 8px 12px; border: 2px solid var(--line); border-radius: 14px; width: 100%; background: #fffafb;
   }
   .c-form textarea { resize: vertical; }
   .c-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
@@ -158,20 +220,20 @@
   .weather .w-trip { width: 100%; border-top: 1px solid var(--line); padding-top: 10px; font-size: 14px; }
   .weather .w-trip div { display: flex; justify-content: space-between; padding: 3px 0; }
 
-  .opt { border-left: 4px solid var(--gold); padding-left: 12px; margin: 12px 0; }
+  .opt { border-left: 4px solid var(--accent, var(--pink)); border-radius: 2px; padding-left: 12px; margin: 12px 0; }
   .opt h3 { font-size: 16px; }
   .opt p, .opt li { font-size: 14px; }
   .opt ul { margin: 4px 0 0; padding-left: 18px; }
 
   .progress { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
-  .progress .bar { flex: 1; height: 8px; background: #e9e4da; border-radius: 99px; overflow: hidden; }
-  .progress .bar span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .25s; }
+  .progress .bar { flex: 1; height: 10px; background: #f6e8ec; border-radius: 99px; overflow: hidden; }
+  .progress .bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--pink), var(--yellow), var(--mint)); border-radius: 99px; transition: width .25s; }
   .progress .count { font-size: 13px; font-weight: 700; color: var(--muted); min-width: 52px; text-align: right; }
   .checklist { list-style: none; margin: 0; padding: 0; }
   .checklist li { border-bottom: 1px solid var(--line); }
   .checklist li:last-child { border-bottom: 0; }
   .checklist label { display: flex; gap: 12px; padding: 11px 2px; cursor: pointer; align-items: flex-start; }
-  .checklist input { width: 22px; height: 22px; margin: 1px 0 0; flex: 0 0 auto; accent-color: var(--ok); }
+  .checklist input { width: 22px; height: 22px; margin: 1px 0 0; flex: 0 0 auto; accent-color: var(--pink-deep); }
   .checklist .txt b { font-size: 15px; }
   .checklist .txt > span { display: block; font-size: 13px; color: var(--muted); }
   .checklist input:checked + .txt b { text-decoration: line-through; color: var(--muted); }
@@ -195,13 +257,13 @@
   details.opt > ul { margin-top: 6px; }
   .c-open { width: 100%; margin-top: 10px; }
   .c-form[hidden] { display: none; }
-  .lv { font-size: 11px; font-weight: 800; border-radius: 5px; padding: 1px 6px; margin-left: 6px; vertical-align: 1px; }
+  .lv { font-size: 11px; font-weight: 800; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
   .lv.must { background: var(--red); color: #fff; }
-  .lv.rec { background: var(--gold); color: var(--navy); }
-  .lv.opt2 { background: #dfe4ec; color: #4a5568; }
+  .lv.rec { background: var(--yellow); color: var(--ink); }
+  .lv.opt2 { background: var(--lilac-soft); color: #5b4a8a; }
 
-  .phrases { display: grid; gap: 10px; }
-  .phrase { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .phrases { display: grid; gap: 12px; }
+  .phrase { background: #fff; border: 2px solid var(--accent-soft); border-radius: var(--radius); padding: 14px 16px; box-shadow: 0 4px 0 var(--accent-soft); }
   .phrase .ko { font-size: 13px; color: var(--muted); font-weight: 700; }
   .phrase .zh { font-size: 19px; font-weight: 700; margin-top: 4px; line-height: 1.5; }
   .overlay {
@@ -222,6 +284,7 @@
   details ul { font-size: 13px; padding-left: 18px; }
   details li { margin: 4px 0; word-break: break-all; }
   footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
+  footer::before { content: "🥟 🏮 🦀 🌸"; display: block; font-size: 22px; letter-spacing: .2em; margin-bottom: 6px; }
 
   @media (min-width: 640px) {
     .tiles { grid-template-columns: repeat(4, 1fr); }
@@ -232,6 +295,7 @@
 <body>
 
 <header class="hero">
+  <div class="stickers" aria-hidden="true"><span>🥟</span><span>✈️</span><span>🌸</span><span>🦀</span><span>🏮</span><span>🧋</span></div>
   <div class="eyebrow">SHANGHAI TRIP</div>
   <h1>상하이 야르렁 trip</h1>
   <div class="dates">2026.11.21 (토) ~ 11.23 (월)</div>
@@ -281,7 +345,7 @@
 <main>
 
 <section id="summary">
-  <h2><span class="num">01</span>한눈에 보기</h2>
+  <h2><span class="num" aria-hidden="true">👀</span>한눈에 보기</h2>
   <div class="tiles">
     <div class="tile">
       <div class="label">일정</div>
@@ -323,7 +387,7 @@
 </section>
 
 <section id="flight">
-  <h2><span class="num">02</span>항공편</h2>
+  <h2><span class="num" aria-hidden="true">✈️</span>항공편</h2>
 
   <div class="card flight">
     <span class="badge">가는 편</span> <b>11/21 (토)</b>
@@ -370,7 +434,7 @@
 </section>
 
 <section id="hotel">
-  <h2><span class="num">03</span>호텔</h2>
+  <h2><span class="num" aria-hidden="true">🏨</span>호텔</h2>
   <div class="card">
     <h3>골든 튤립 번드 뉴 아시아 <span class="muted small">Golden Tulip Bund New Asia</span></h3>
     <div class="zh" style="font-size:17px;font-weight:700">上海外滩郁锦香新亚大酒店</div>
@@ -410,7 +474,7 @@
 </section>
 
 <section id="plan">
-  <h2><span class="num">04</span>일정</h2>
+  <h2><span class="num" aria-hidden="true">🗺️</span>일정</h2>
   <p class="muted" style="margin-top:-6px">일정은 같이 정해요. 가고 싶은 곳을 보고 날짜별 댓글로 의견을 남겨 주세요.</p>
 
   <div class="card">
@@ -493,7 +557,7 @@
 </section>
 
 <section id="move">
-  <h2><span class="num">05</span>교통 동선</h2>
+  <h2><span class="num" aria-hidden="true">🚇</span>교통 동선</h2>
 
   <div class="card">
     <h3>푸둥공항(PVG) → 호텔</h3>
@@ -552,7 +616,7 @@
 </section>
 
 <section id="apps">
-  <h2><span class="num">06</span>깔아야 할 앱</h2>
+  <h2><span class="num" aria-hidden="true">📱</span>깔아야 할 앱</h2>
   <details class="card fold" data-group="apps">
     <summary>
       <span class="group-title">앱 10개 (필수 4, 권장 3, 선택 3)</span>
@@ -575,7 +639,7 @@
 </section>
 
 <section id="prep">
-  <h2><span class="num">07</span>준비물 체크리스트</h2>
+  <h2><span class="num" aria-hidden="true">🎒</span>준비물 체크리스트</h2>
   <p class="muted" style="margin-top:-6px">체크 표시는 각자 폰에만 저장돼요. 친구 화면에는 안 보여요.</p>
 
   <details class="card fold" data-group="now">
@@ -635,7 +699,7 @@
 </section>
 
 <section id="cards">
-  <h2><span class="num">08</span>보여주기 카드</h2>
+  <h2><span class="num" aria-hidden="true">💬</span>보여주기 카드</h2>
   <p class="muted" style="margin-top:-6px">'크게 보기'를 누르면 화면 가득 중국어가 나와요. 기사님이나 직원에게 그대로 보여주세요.</p>
   <div class="phrases">
     <div class="phrase">
@@ -667,7 +731,7 @@
 </section>
 
 <section id="caution">
-  <h2><span class="num">09</span>주의할 점</h2>
+  <h2><span class="num" aria-hidden="true">🙅</span>주의할 점</h2>
   <div class="card">
     <ul class="plain">
       <li><b>찻집, 술집 사기</b>: 난징동루, 인민광장, 와이탄에서 "사진 찍어 줄래요?", "같이 차 마셔요"로 접근해 찻집이나 술집으로 데려가 수십만 원을 청구해요. 따라가지 마세요.</li>
@@ -681,7 +745,7 @@
 </section>
 
 <section id="sos">
-  <h2><span class="num">10</span>비상 연락처</h2>
+  <h2><span class="num" aria-hidden="true">🚑</span>비상 연락처</h2>
   <div class="card sos">
     <ul>
       <li><span>경찰</span><a href="tel:110">110</a></li>
