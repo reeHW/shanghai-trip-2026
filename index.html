@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f1d33">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+<title>상하이 2박 3일 | 2026.11.21 ~ 11.23</title>
+<meta property="og:title" content="상하이 2박 3일 여행 계획">
+<meta property="og:description" content="11/21(토) ~ 11/23(월) 항공, 호텔, 일정, 필수 앱, 준비물 체크리스트">
+<style>
+  :root {
+    --ink: #1b2333;
+    --muted: #5d6677;
+    --bg: #f5f2ec;
+    --card: #ffffff;
+    --navy: #0f1d33;
+    --gold: #e3a94b;
+    --red: #c8423b;
+    --line: #e7e1d6;
+    --ok: #2f8f5b;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .zh, .zh-inline { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", sans-serif; word-break: normal; }
+  a { color: #1d5fbf; }
+  main { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
+
+  header.hero {
+    background: linear-gradient(180deg, #0b1526 0%, #16294a 70%, #1f3762 100%);
+    color: #fff;
+    padding: 28px 20px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .08em; font-size: 13px; }
+  .hero h1 { margin: 6px 0 4px; font-size: 30px; }
+  .hero .dates { opacity: .85; font-size: 15px; }
+  .hero .dday {
+    display: inline-block; margin-top: 12px; padding: 6px 16px; border-radius: 999px;
+    background: var(--gold); color: var(--navy); font-weight: 800; font-size: 18px;
+  }
+  .hero svg { display: block; width: 100%; max-width: 520px; margin: 14px auto 0; }
+
+  nav.chips {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(245, 242, 236, .96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    display: flex; gap: 6px; overflow-x: auto; padding: 10px 12px;
+    scrollbar-width: none;
+  }
+  nav.chips::-webkit-scrollbar { display: none; }
+  nav.chips a {
+    flex: 0 0 auto; text-decoration: none; color: var(--ink);
+    background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 12px; font-size: 14px; font-weight: 600;
+  }
+
+  section { margin-top: 28px; }
+  h2 { font-size: 21px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  h2 .num { background: var(--navy); color: #fff; font-size: 13px; border-radius: 6px; padding: 1px 7px; }
+  h3 { font-size: 17px; margin: 0 0 6px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 12px;
+  }
+  .muted { color: var(--muted); font-size: 14px; }
+  .small { font-size: 13px; }
+  .note {
+    background: #fff8ea; border: 1px solid #f1d9a8; border-radius: 10px;
+    padding: 10px 12px; font-size: 14px; margin-top: 10px;
+  }
+  .warn {
+    background: #fdeeed; border: 1px solid #f2c3bf; border-radius: 10px;
+    padding: 10px 12px; font-size: 14px; margin-top: 10px;
+  }
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+  .tile .label { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .tile .value { font-size: 16px; font-weight: 700; margin-top: 2px; }
+  .tile .sub { font-size: 13px; color: var(--muted); }
+
+  .callout { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 16px; margin-top: 12px; }
+  .callout h3 { color: var(--gold); }
+  .callout p { margin: 6px 0 0; font-size: 15px; }
+  .airports { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .airport { background: rgba(255,255,255,.08); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+  .airport b { font-size: 20px; color: var(--gold); display: block; }
+
+  .flight .route { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0 6px; }
+  .flight .end { text-align: center; min-width: 92px; }
+  .flight .code { font-size: 26px; font-weight: 800; letter-spacing: .02em; }
+  .flight .time { font-size: 18px; font-weight: 700; }
+  .flight .place { font-size: 13px; color: var(--muted); }
+  .flight .line { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 6px, transparent 6px 12px); position: relative; }
+  .flight .line::after { content: "✈"; position: absolute; left: 50%; top: -13px; transform: translateX(-50%); font-size: 18px; color: var(--navy); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #eef2f8; color: #2a4a7a; }
+  .badge.red { background: #fdeeed; color: var(--red); }
+  .badge.gold { background: #fbf0dc; color: #8a5a10; }
+
+  dl.kv { display: grid; grid-template-columns: 86px 1fr; gap: 6px 10px; margin: 10px 0 0; font-size: 15px; }
+  dl.kv dt { color: var(--muted); font-weight: 600; }
+  dl.kv dd { margin: 0; }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .btn {
+    appearance: none; border: 1px solid var(--navy); background: var(--navy); color: #fff;
+    border-radius: 10px; padding: 8px 14px; font-size: 14px; font-weight: 700; cursor: pointer;
+    text-decoration: none; font-family: inherit;
+  }
+  .btn.ghost { background: #fff; color: var(--navy); }
+
+  .line10 { display: flex; flex-wrap: wrap; gap: 4px 0; align-items: center; margin-top: 10px; font-size: 13px; }
+  .line10 .st { background: #fff; border: 2px solid #c9a7e8; border-radius: 999px; padding: 2px 8px; }
+  .line10 .st.me { background: #7b4bb3; color: #fff; border-color: #7b4bb3; font-weight: 700; }
+  .line10 .gap { color: #7b4bb3; padding: 0 4px; }
+
+  .day { margin-bottom: 18px; }
+  .day-head {
+    display: flex; align-items: baseline; gap: 10px; background: var(--navy); color: #fff;
+    border-radius: var(--radius) var(--radius) 0 0; padding: 12px 16px;
+  }
+  .day-head .d { color: var(--gold); font-weight: 800; }
+  .day-head .t { font-weight: 700; }
+  .day-body { background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--radius) var(--radius); padding: 6px 16px 12px; }
+  .slot { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .slot:last-child { border-bottom: 0; }
+  .slot .when { font-weight: 800; font-size: 15px; color: var(--navy); }
+  .slot .what b { font-size: 15px; }
+  .slot .what p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 5px; padding: 1px 6px; margin-left: 4px; vertical-align: 1px; }
+  .tag.night { background: #e7ecfa; color: #2d4aa8; }
+  .tag.food { background: #fdeee2; color: #b2541c; }
+  .tag.walk { background: #e4f4ea; color: #23784a; }
+  .tag.history { background: #f3e9f9; color: #7b3aa6; }
+  .tag.shop { background: #fdf3d9; color: #8a6510; }
+  .tag.move { background: #eceff3; color: #4a5568; }
+
+  .opt { border-left: 4px solid var(--gold); padding-left: 12px; margin: 12px 0; }
+  .opt h3 { font-size: 16px; }
+  .opt p, .opt li { font-size: 14px; }
+  .opt ul { margin: 4px 0 0; padding-left: 18px; }
+
+  .progress { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
+  .progress .bar { flex: 1; height: 8px; background: #e9e4da; border-radius: 99px; overflow: hidden; }
+  .progress .bar span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .25s; }
+  .progress .count { font-size: 13px; font-weight: 700; color: var(--muted); min-width: 52px; text-align: right; }
+  .checklist { list-style: none; margin: 0; padding: 0; }
+  .checklist li { border-bottom: 1px solid var(--line); }
+  .checklist li:last-child { border-bottom: 0; }
+  .checklist label { display: flex; gap: 12px; padding: 11px 2px; cursor: pointer; align-items: flex-start; }
+  .checklist input { width: 22px; height: 22px; margin: 1px 0 0; flex: 0 0 auto; accent-color: var(--ok); }
+  .checklist .txt b { font-size: 15px; }
+  .checklist .txt > span { display: block; font-size: 13px; color: var(--muted); }
+  .checklist input:checked + .txt b { text-decoration: line-through; color: var(--muted); }
+  .group-title { font-size: 15px; font-weight: 800; margin: 0 0 4px; display: flex; justify-content: space-between; align-items: center; }
+  .lv { font-size: 11px; font-weight: 800; border-radius: 5px; padding: 1px 6px; margin-left: 6px; vertical-align: 1px; }
+  .lv.must { background: var(--red); color: #fff; }
+  .lv.rec { background: var(--gold); color: var(--navy); }
+  .lv.opt2 { background: #dfe4ec; color: #4a5568; }
+
+  .phrases { display: grid; gap: 10px; }
+  .phrase { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+  .phrase .ko { font-size: 13px; color: var(--muted); font-weight: 700; }
+  .phrase .zh { font-size: 19px; font-weight: 700; margin-top: 4px; line-height: 1.5; }
+  .overlay {
+    position: fixed; inset: 0; z-index: 50; background: #fff; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px; text-align: center; cursor: pointer;
+  }
+  .overlay[hidden] { display: none; }
+  .overlay .big { font-size: clamp(30px, 9vw, 64px); font-weight: 800; line-height: 1.45; color: #000; }
+  .overlay .hint { position: absolute; bottom: 24px; color: var(--muted); font-size: 14px; }
+
+  ul.plain { margin: 0; padding-left: 18px; }
+  ul.plain li { margin: 6px 0; font-size: 15px; }
+  .sos a { font-weight: 700; text-decoration: none; }
+  .sos li { list-style: none; display: flex; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .sos li:last-child { border-bottom: 0; }
+  .sos ul { margin: 0; padding: 0; }
+  details summary { cursor: pointer; font-weight: 700; }
+  details ul { font-size: 13px; padding-left: 18px; }
+  details li { margin: 4px 0; word-break: break-all; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
+
+  @media (min-width: 640px) {
+    .tiles { grid-template-columns: repeat(4, 1fr); }
+    .phrases { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">SHANGHAI TRIP</div>
+  <h1>상하이 2박 3일</h1>
+  <div class="dates">2026.11.21 (토) ~ 11.23 (월)</div>
+  <div class="dday" id="dday">D-?</div>
+  <svg viewBox="0 0 360 110" aria-hidden="true">
+    <g fill="rgba(255,255,255,.16)">
+      <rect x="10" y="78" width="22" height="32"/>
+      <rect x="36" y="66" width="18" height="44"/>
+      <rect x="58" y="84" width="14" height="26"/>
+      <rect x="104" y="72" width="20" height="38"/>
+      <rect x="128" y="86" width="16" height="24"/>
+      <rect x="288" y="70" width="20" height="40"/>
+      <rect x="312" y="82" width="16" height="28"/>
+      <rect x="332" y="74" width="20" height="36"/>
+    </g>
+    <g fill="rgba(227,169,75,.85)">
+      <rect x="84.5" y="8" width="1.6" height="22"/>
+      <rect x="82" y="30" width="6.6" height="80"/>
+      <circle cx="85.3" cy="34" r="5"/>
+      <circle cx="85.3" cy="68" r="10"/>
+      <polygon points="76,110 82,74 84,74 79,110"/>
+      <polygon points="94.6,110 88.6,74 86.6,74 91.6,110"/>
+    </g>
+    <g fill="rgba(255,255,255,.55)">
+      <polygon points="168,110 170,40 174,40 174,30 177,30 177,18 179,10 181,18 181,30 184,30 184,40 188,40 190,110"/>
+      <path d="M206 110 L209 26 Q216 2 230 10 L232 110 Z"/>
+      <path d="M248 110 L251 22 L267 22 L270 110 Z"/>
+    </g>
+    <rect x="254" y="25" width="10" height="7" rx="1.5" fill="#1a2f55"/>
+    <rect x="0" y="108" width="360" height="2" fill="rgba(227,169,75,.6)"/>
+  </svg>
+</header>
+
+<nav class="chips" aria-label="섹션 바로가기">
+  <a href="#summary">요약</a>
+  <a href="#flight">항공</a>
+  <a href="#hotel">호텔</a>
+  <a href="#plan">일정</a>
+  <a href="#move">교통</a>
+  <a href="#apps">앱</a>
+  <a href="#prep">준비물</a>
+  <a href="#cards">보여주기 카드</a>
+  <a href="#caution">주의</a>
+  <a href="#sos">비상연락</a>
+</nav>
+
+<main>
+
+<section id="summary">
+  <h2><span class="num">01</span>한눈에 보기</h2>
+  <div class="tiles">
+    <div class="tile">
+      <div class="label">일정</div>
+      <div class="value">2박 3일</div>
+      <div class="sub">토요일 출발, 월요일 귀국</div>
+    </div>
+    <div class="tile">
+      <div class="label">시차</div>
+      <div class="value">한국보다 1시간 느림</div>
+      <div class="sub">서울 12시 = 상하이 11시</div>
+    </div>
+    <div class="tile">
+      <div class="label">11월 하순 날씨</div>
+      <div class="value">5 ~ 15도</div>
+      <div class="sub">평년 기준. 겹쳐 입기, 우산</div>
+    </div>
+    <div class="tile">
+      <div class="label">비자</div>
+      <div class="value">무비자 30일</div>
+      <div class="sub">2026.12.31까지 시행</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>PVG, SHA가 뭐야?</h3>
+    <p>공항을 부르는 세 글자 코드예요(인천 ICN, 김포 GMP처럼). 상하이에는 국제공항이 두 개라서 <b>갈 때와 올 때 공항이 달라요.</b></p>
+    <div class="airports">
+      <div class="airport">
+        <b>PVG</b>
+        푸둥 국제공항 <span class="zh-inline">浦东</span><br>
+        시내 동쪽 끝, 큰 국제공항.<br>시내까지 약 1시간. <b style="display:inline;font-size:14px">갈 때 도착</b>
+      </div>
+      <div class="airport">
+        <b>SHA</b>
+        훙차오 국제공항 <span class="zh-inline">虹桥</span><br>
+        시내 서쪽, 김포행 같은 단거리 국제선.<br>호텔에서 지하철 약 40분. <b style="display:inline;font-size:14px">올 때 출발</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="flight">
+  <h2><span class="num">02</span>항공편</h2>
+
+  <div class="card flight">
+    <span class="badge">가는 편</span> <b>11/21 (토)</b>
+    <div class="route">
+      <div class="end">
+        <div class="code">ICN</div>
+        <div class="time">10:50</div>
+        <div class="place">인천 (한국 시각)</div>
+      </div>
+      <div class="line"></div>
+      <div class="end">
+        <div class="code">PVG</div>
+        <div class="time">약 11:50</div>
+        <div class="place">상하이 푸둥 (현지)</div>
+      </div>
+    </div>
+    <p class="muted small">비행 약 2시간. 시차 1시간이라 시계로는 1시간만 지난 것처럼 보여요. 도착 시각은 예상치라 e티켓으로 확인하세요.</p>
+    <div class="note">
+      <b>터미널은 항공사마다 달라요.</b> 인천 출발 터미널(T1, T2)과 푸둥 도착 터미널을 e티켓에서 꼭 확인하세요.
+      푸둥은 대한항공, 동방항공, 상하이항공이 T1이고 아시아나, 춘추항공, 길상항공이 T2로 알려져 있어요(변경 가능).
+    </div>
+  </div>
+
+  <div class="card flight">
+    <span class="badge red">오는 편</span> <b>11/23 (월)</b>
+    <div class="route">
+      <div class="end">
+        <div class="code">SHA</div>
+        <div class="time">18:15</div>
+        <div class="place">상하이 훙차오 T1 (현지)</div>
+      </div>
+      <div class="line"></div>
+      <div class="end">
+        <div class="code">GMP</div>
+        <div class="time">약 21:15</div>
+        <div class="place">김포 (한국 시각)</div>
+      </div>
+    </div>
+    <p class="muted small">비행 약 2시간. 훙차오 국제선은 <b>1터미널(T1)</b>에서 출발해요.</p>
+    <div class="warn">
+      국제선 체크인 마감은 출발 <b>40~45분 전</b>(항공사별)이에요. 출국 심사까지 생각해서 <b>15:45 무렵 T1 도착</b>을 목표로 잡았어요.
+    </div>
+  </div>
+</section>
+
+<section id="hotel">
+  <h2><span class="num">03</span>호텔</h2>
+  <div class="card">
+    <h3>골든 튤립 뉴 아시아 호텔 더 번드</h3>
+    <div class="zh" style="font-size:17px;font-weight:700">上海外滩郁锦香新亚大酒店</div>
+    <dl class="kv">
+      <dt>주소</dt>
+      <dd><span class="zh-inline">上海市虹口区天潼路422号</span><br><span class="muted small">No. 422 Tiantong Road, Hongkou District</span></dd>
+      <dt>전화</dt>
+      <dd><a href="tel:+862163242210">+86-21-6324-2210</a></dd>
+      <dt>체크인</dt>
+      <dd>14:00 이후</dd>
+      <dt>체크아웃</dt>
+      <dd>12:00 이전 <span class="muted small">(예약 사이트 기준)</span></dd>
+      <dt>가까운 역</dt>
+      <dd>톈퉁루 <span class="zh-inline">天潼路</span>역 (10호선, 12호선)<br>3번 출구에서 걸어서 약 5분 (290m)</dd>
+      <dt>주변</dt>
+      <dd>와이탄까지 걸어서 약 15분, 난징동루 보행가 약 1km</dd>
+    </dl>
+    <div class="btns">
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Golden+Tulip+New+Asia+Hotel+The+Bund+Shanghai" target="_blank" rel="noopener">구글 지도에서 보기</a>
+      <button class="btn ghost" type="button" data-copy="上海外滩郁锦香新亚大酒店">중국어 이름 복사</button>
+    </div>
+    <p class="muted small">현지 길찾기는 고덕지도가 정확해요. 한국어 검색이 안 되니 위 버튼으로 중국어 이름을 복사해서 고덕지도나 DiDi에 붙여 넣으세요.</p>
+  </div>
+
+  <div class="card">
+    <h3>호텔 앞 10호선 하나면 거의 다 가요</h3>
+    <p class="muted small" style="margin:0">톈퉁루역 10호선은 이번 일정의 주요 장소와 훙차오공항을 갈아타지 않고 이어요. 괄호 안은 정거장 수예요.</p>
+    <div class="line10">
+      <span class="st me">톈퉁루 (호텔)</span><span class="gap">→</span>
+      <span class="st">난징동루 (1)</span><span class="gap">→</span>
+      <span class="st">위위안 (2)</span><span class="gap">→</span>
+      <span class="st">신톈디 (4)</span><span class="gap">→</span>
+      <span class="st">자오퉁대학, 우캉루 근처 (7)</span><span class="gap">→</span>
+      <span class="st">훙차오공항 T1 (14)</span>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <h2><span class="num">04</span>추천 일정 (초안)</h2>
+  <p class="muted" style="margin-top:-6px">야경, 맛집, 골목 산책, 역사와 쇼핑을 고루 넣었어요. 시간은 모두 <b>현지 시각</b>이고, 같이 보면서 고쳐 나가요.</p>
+
+  <div class="day">
+    <div class="day-head"><span class="d">DAY 1</span><span class="t">11/21 (토) 도착, 위위안, 와이탄 야경</span></div>
+    <div class="day-body">
+      <div class="slot"><div class="when">11:50</div><div class="what"><b>푸둥공항 도착</b><span class="tag move">이동</span><p>입국 심사(온라인 입국카드 QR 준비). 짐 찾고 호텔로.</p></div></div>
+      <div class="slot"><div class="when">13:00</div><div class="what"><b>호텔로 이동</b><span class="tag move">이동</span><p>택시 또는 자기부상열차. 교통 섹션 참고. 체크인은 14시부터라 이르면 짐만 맡겨요.</p></div></div>
+      <div class="slot"><div class="when">14:30</div><div class="what"><b>위위안(예원) 정원</b><span class="tag history">역사</span><span class="tag walk">산책</span><p>10호선 2정거장. 정원은 16:30 전후 문을 닫으니 먼저 보고, 입장료 30~40위안. 월요일 휴무설이 있어서 첫날에 넣었어요.</p></div></div>
+      <div class="slot"><div class="when">16:00</div><div class="what"><b>위위안 상가 + 난샹만두 샤오롱바오</b><span class="tag food">맛집</span><span class="tag shop">쇼핑</span><p>난샹만두점 <span class="zh-inline">南翔馒头店</span> (위위안점). 줄이 길면 상가 구경 먼저.</p></div></div>
+      <div class="slot"><div class="when">17:30</div><div class="what"><b>와이탄 해 질 녘과 야경</b><span class="tag night">야경</span><p>17시 무렵부터 불이 하나씩 켜져요. 소등은 21~22시라 저녁 먹기 전에 한 번, 먹고 나서 한 번 보면 좋아요.</p></div></div>
+      <div class="slot"><div class="when">19:00</div><div class="what"><b>저녁: 상하이 털게</b><span class="tag food">맛집</span><p>11월은 털게 제철. 九江路(주장루) 쪽 식당 '상하이(Shanghai)'가 미쉐린 가이드에 털게로 소개됐어요(예약 권장). 대안은 황허루 <span class="zh-inline">黄河路</span> 먹자골목.</p></div></div>
+      <div class="slot"><div class="when">20:30</div><div class="what"><b>난징동루 보행가 산책 → 호텔까지 걸어서</b><span class="tag night">야경</span><span class="tag shop">쇼핑</span><p>호텔이 와이탄 북쪽이라 걸어서 돌아갈 수 있어요.</p></div></div>
+      <div class="note">비행기가 늦거나 입국 심사가 길어지면 위위안 정원은 건너뛰고 상가와 야경만 봐도 충분해요.</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="d">DAY 2</span><span class="t">11/22 (일) 임시정부, 골목 산책, 상하이타워</span></div>
+    <div class="day-body">
+      <div class="slot"><div class="when">09:00</div><div class="what"><b>대한민국 임시정부 청사</b><span class="tag history">역사</span><p>10호선 신톈디역. 마당로 <span class="zh-inline">马当路306弄4号</span>. 09:00~11:30, 13:30~17:00 (입장 마감 11:00, 16:30), 20위안. 내부 촬영 불가, 여권 지참.</p></div></div>
+      <div class="slot"><div class="when">10:30</div><div class="what"><b>신톈디 산책과 커피</b><span class="tag walk">산책</span><p>임시정부 청사에서 걸어서 5분. 석고문 골목을 카페 거리로 바꾼 곳.</p></div></div>
+      <div class="slot"><div class="when">12:00</div><div class="what"><b>점심</b><span class="tag food">맛집</span><p>신톈디 주변 식당가.</p></div></div>
+      <div class="slot"><div class="when">13:00</div><div class="what"><b>톈쯔팡</b><span class="tag walk">산책</span><span class="tag shop">쇼핑</span><p>좁은 골목에 공방, 소품 가게. 오후 2시 넘으면 매우 붐벼서 이른 오후에. 신톈디에서 택시 10분 안팎.</p></div></div>
+      <div class="slot"><div class="when">15:00</div><div class="what"><b>안푸루, 우캉루 (옛 프랑스 조계)</b><span class="tag walk">산책</span><p>플라타너스 길, 우캉맨션 사진, 카페. 두 길이 걸어서 이어져요.</p></div></div>
+      <div class="slot"><div class="when">17:30</div><div class="what"><b>루자쭈이로 이동</b><span class="tag move">이동</span><p>자오퉁대학역 10호선 → 난징동루에서 2호선 → 루자쭈이. 약 30~40분.</p></div></div>
+      <div class="slot"><div class="when">18:30</div><div class="what"><b>상하이타워 118층 전망대</b><span class="tag night">야경</span><p>08:30~22:00, 입장 마감 약 21시(출처마다 20:30~21:30). 약 180위안(예약 플랫폼 기준). 실명 예매라 여권번호 필요.</p></div></div>
+      <div class="slot"><div class="when">20:00</div><div class="what"><b>저녁 → 와이탄 건너 호텔로</b><span class="tag food">맛집</span><p>루자쭈이 쇼핑몰 식당가에서 먹거나, 2호선으로 난징동루까지 1정거장 건너와서 먹어요.</p></div></div>
+      <div class="note">임시정부 청사와 위위안 정원은 월요일 휴관 여부가 출처마다 달라서 월요일을 피했어요. 청사 확인 전화 <a href="tel:+862153829057">021-5382-9057</a>.</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="d">DAY 3</span><span class="t">11/23 (월) 아침 산책, 쇼핑, 귀국</span></div>
+    <div class="day-body">
+      <div class="slot"><div class="when">08:30</div><div class="what"><b>아침: 성젠바오</b><span class="tag food">맛집</span><p>바닥을 바삭하게 구운 군만두. 샤오양성젠 <span class="zh-inline">小杨生煎</span>, 다후춘 <span class="zh-inline">大壶春</span> 같은 체인이 많으니 고덕지도로 가까운 곳 검색.</p></div></div>
+      <div class="slot"><div class="when">09:30</div><div class="what"><b>낮의 와이탄과 와이바이두교</b><span class="tag walk">산책</span><p>밤과 전혀 다른 분위기. 호텔에서 걸어갈 거리.</p></div></div>
+      <div class="slot"><div class="when">10:30</div><div class="what"><b>난징동루 기념품 쇼핑</b><span class="tag shop">쇼핑</span><p>차, 과자, 기념품. 상하이 박물관 인민광장관은 <b>월요일 휴관</b>이라 이번엔 빼요.</p></div></div>
+      <div class="slot"><div class="when">12:00</div><div class="what"><b>체크아웃, 짐 맡기기</b><span class="tag move">이동</span><p>프런트에 짐 보관 부탁하고 점심.</p></div></div>
+      <div class="slot"><div class="when">14:30</div><div class="what"><b>호텔에서 짐 찾기</b><span class="tag move">이동</span></div></div>
+      <div class="slot"><div class="when">14:45</div><div class="what"><b>10호선으로 훙차오공항 T1</b><span class="tag move">이동</span><p>톈퉁루역에서 <b>虹桥火车站(훙차오 기차역)행</b> 탑승 → 14정거장 → 虹桥1号航站楼역. 약 40분.</p></div></div>
+      <div class="slot"><div class="when">15:45</div><div class="what"><b>훙차오 T1 도착, 체크인, 출국 심사</b><span class="tag move">이동</span></div></div>
+      <div class="slot"><div class="when">18:15</div><div class="what"><b>출발 → 김포 약 21:15 도착 (한국 시각)</b><span class="tag move">이동</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="move">
+  <h2><span class="num">05</span>교통 동선</h2>
+
+  <div class="card">
+    <h3>푸둥공항(PVG) → 호텔</h3>
+    <div class="opt">
+      <h3>① 택시 또는 DiDi <span class="badge gold">짐 있을 때 추천</span></h3>
+      <ul>
+        <li>도착층 1층 'Taxi' 표지의 <b>공식 줄</b>에서만 타기</li>
+        <li>약 45~60분 (막히면 90분), 약 150~250위안 + 통행료. 여럿이 나누면 부담이 적어요</li>
+        <li>기사님께 아래 '호텔 카드'를 보여주세요</li>
+      </ul>
+    </div>
+    <div class="opt">
+      <h3>② 자기부상열차 + 지하철 <span class="badge">빠르고 재밌음</span></h3>
+      <ul>
+        <li>자기부상열차 <span class="zh-inline">磁悬浮</span> 푸둥공항 → 룽양루 <span class="zh-inline">龙阳路</span> 약 8분</li>
+        <li>편도 50위안, 당일 탑승권을 보여주면 40위안. <b>표를 따로 사야 해요</b>(알리페이 지하철 QR 안 됨)</li>
+        <li>룽양루에서 2호선 → 난징동루에서 10호선 1정거장 → 톈퉁루 3번 출구 도보 5분. 전체 약 1시간</li>
+      </ul>
+    </div>
+    <div class="opt">
+      <h3>③ 지하철만 <span class="badge">가장 저렴</span></h3>
+      <ul>
+        <li>푸둥공항역 2호선 → 난징동루 → 10호선 1정거장 → 톈퉁루. 약 75~90분, 몇 위안</li>
+        <li>열차에 따라 중간 광란루 <span class="zh-inline">广兰路</span>역에서 같은 2호선 열차로 갈아타야 할 수 있어요(안내 방송 확인)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>호텔 → 훙차오공항(SHA) T1</h3>
+    <div class="opt">
+      <h3>지하철 10호선 <span class="badge gold">추천</span></h3>
+      <ul>
+        <li>톈퉁루역에서 <b>虹桥火车站(훙차오 기차역)행</b> 열차 → 14정거장 → <b>虹桥1号航站楼</b>(훙차오공항 1터미널)역</li>
+        <li>약 40분, 요금은 몇 위안 수준</li>
+      </ul>
+      <div class="warn"><b>航中路(항중루)행은 타지 마세요.</b> 룽시루 <span class="zh-inline">龙溪路</span>역에서 다른 길로 갈라져 공항에 안 가요. 잘못 탔다면 룽시루에서 내려 虹桥火车站행으로 갈아타면 돼요.</div>
+      <p class="muted small">지하철역과 T1을 잇는 통로가 공사로 임시 변경된 적이 있으니 현장 표지를 따라가세요.</p>
+    </div>
+    <div class="opt">
+      <h3>택시</h3>
+      <ul>
+        <li>가능하지만 월요일 오후 정체 변수가 있어요. 기사님께 '훙차오 T1 카드'를 보여주세요</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>시내 이동 요령</h3>
+    <ul class="plain">
+      <li><b>지하철</b>: 알리페이에서 여권 인증을 마치면 상하이 지하철 QR로 개찰구 통과. 안 되면 역 자동판매기(영어 지원)에서 일회권 3~9위안</li>
+      <li><b>운행 시간</b>: 대략 05:30~23:00 (노선별로 달라요)</li>
+      <li><b>택시</b>: 알리페이 안의 DiDi로 부르면 목적지가 중국어로 전달돼서 편해요</li>
+    </ul>
+  </div>
+</section>
+
+<section id="apps">
+  <h2><span class="num">06</span>깔아야 할 앱</h2>
+  <div class="card" data-group="apps">
+    <div class="progress" data-progress="apps"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="a-alipay"><div class="txt"><b>알리페이 <span class="zh-inline">支付宝</span><span class="lv must">필수</span></b><span>결제, 지하철 QR, DiDi 택시 호출까지 이거 하나로. 한국에서 미리 가입하고 카드 등록.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-amap"><div class="txt"><b>고덕지도 <span class="zh-inline">高德地图</span> (Amap)<span class="lv must">필수</span></b><span>중국 길찾기는 이게 정확해요. 영어 화면을 지원하지만 한국어 검색은 안 돼서 중국어 이름을 붙여 넣어야 해요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-papago"><div class="txt"><b>파파고<span class="lv must">필수</span></b><span>중국어 오프라인 번역 미리 내려받기. 메뉴판은 사진 번역.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-esim"><div class="txt"><b>로밍 또는 eSIM 앱<span class="lv must">필수</span></b><span>개통과 데이터 잔량 확인용.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-wechat"><div class="txt"><b>위챗 <span class="zh-inline">微信</span><span class="lv rec">권장</span></b><span>위챗페이는 알리페이가 안 될 때 백업. 일부 식당은 위챗 QR로 주문.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-didi"><div class="txt"><b>DiDi <span class="zh-inline">滴滴</span><span class="lv rec">권장</span></b><span>택시 호출. 알리페이 안의 미니프로그램으로 대신해도 돼요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-airline"><div class="txt"><b>이용 항공사 앱<span class="lv rec">권장</span></b><span>모바일 탑승권, 지연 알림.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-dianping"><div class="txt"><b>다중뎬핑 <span class="zh-inline">大众点评</span><span class="lv opt2">선택</span></b><span>중국판 맛집 리뷰. 현지인 평점 확인용.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-trip"><div class="txt"><b>Trip.com<span class="lv opt2">선택</span></b><span>상하이타워 같은 관광지 티켓, 예약 관리.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="a-metroman"><div class="txt"><b>MetroMan<span class="lv opt2">선택</span></b><span>지하철 노선도와 환승 안내.</span></div></label></li>
+    </ul>
+    <p class="muted small">입국카드는 웹(s.nia.gov.cn)으로 작성하면 별도 앱이 필요 없어요.</p>
+  </div>
+</section>
+
+<section id="prep">
+  <h2><span class="num">07</span>준비물 체크리스트</h2>
+  <p class="muted" style="margin-top:-6px">체크 표시는 각자 폰에만 저장돼요. 친구 화면에는 안 보여요.</p>
+
+  <div class="card" data-group="now">
+    <div class="group-title">지금 바로 (출발 2주 전까지)</div>
+    <div class="progress" data-progress="now"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="p-passport"><div class="txt"><b>여권 유효기간 확인</b><span>6개월 이상 남아 있으면 안전. 임시여권은 무비자 대상이 아니에요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-ticket"><div class="txt"><b>항공권 e티켓 확인</b><span>편명, 인천 출발 터미널, 푸둥 도착 터미널.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-hotel"><div class="txt"><b>호텔 예약 확인서 폰에 저장</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-insurance"><div class="txt"><b>여행자보험 가입</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-card"><div class="txt"><b>해외결제 카드 준비 (Visa, Master)</b><span>카드사 앱에서 해외결제 차단 풀기. 한국 발급 유니온페이는 알리페이 등록이 안 된다는 안내가 있어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-data"><div class="txt"><b>데이터 준비 (로밍 또는 eSIM)</b><span>eSIM은 "중국에서 구글, 카톡 사용 가능(우회)"이 명시된 상품으로.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-tower"><div class="txt"><b>(선택) 상하이타워 전망대 예매</b><span>실명 예매라 여권번호 필요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-crab"><div class="txt"><b>(선택) 첫날 저녁 털게 식당 예약</b></div></label></li>
+    </ul>
+  </div>
+
+  <div class="card" data-group="before">
+    <div class="group-title">출발 3~5일 전 (11/16 ~ 11/18)</div>
+    <div class="progress" data-progress="before"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="p-alipay"><div class="txt"><b>알리페이 가입, 카드 등록, 여권 실명인증</b><span>1건 200위안 넘는 결제부터 약 3% 수수료가 붙어요(카드사 해외 수수료 별도).</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-metro"><div class="txt"><b>알리페이에서 상하이 지하철 QR 열어 두기</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-wechat"><div class="txt"><b>위챗 가입, 위챗페이 카드 등록 (백업)</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-papago"><div class="txt"><b>파파고 중국어 오프라인 번역 내려받기</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-cash"><div class="txt"><b>비상용 소액 위안화 환전</b><span>작은 가게, 택시, 결제 오류 대비. 길거리 환전상은 피하기.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-copy"><div class="txt"><b>여권 사진면 사진 저장 + 종이 사본 1장</b></div></label></li>
+    </ul>
+  </div>
+
+  <div class="card" data-group="d72">
+    <div class="group-title">출발 72시간 안 (11/19 ~ 11/20)</div>
+    <div class="progress" data-progress="d72"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="p-arrival"><div class="txt"><b>온라인 입국카드 작성 → QR 캡처</b><span>중국 이민관리국 공식 페이지 <a href="https://s.nia.gov.cn/ArrivalCardFillingPhone/" target="_blank" rel="noopener">s.nia.gov.cn</a> (무료). 한 명이 동반자 10명까지 같이 등록 가능. QR은 72시간 유효라 11/19~20에 작성. 돈 받는 가짜 대행 사이트 주의. 공항에서 종이로 써도 된다는 안내도 있어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="p-weather"><div class="txt"><b>상하이 날씨 확인하고 옷 정하기</b></div></label></li>
+      <li><label><input type="checkbox" data-id="p-checkin"><div class="txt"><b>항공사 온라인 체크인 (되는 경우)</b></div></label></li>
+    </ul>
+  </div>
+
+  <div class="card" data-group="bag">
+    <div class="group-title">짐 싸기</div>
+    <div class="progress" data-progress="bag"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="b-outer"><div class="txt"><b>겉옷 (경량 패딩이나 트렌치), 니트</b><span>11월 하순 최저 5~8도. 실내 난방이 약할 수 있어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="b-shoes"><div class="txt"><b>편한 운동화</b><span>이틀 동안 많이 걸어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="b-umbrella"><div class="txt"><b>접이식 우산</b></div></label></li>
+      <li><label><input type="checkbox" data-id="b-adapter"><div class="txt"><b>멀티 어댑터</b><span>220V라 충전기는 그대로 쓰지만 콘센트 모양이 안 맞는 방이 있어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="b-charger"><div class="txt"><b>충전기, 케이블</b></div></label></li>
+      <li><label><input type="checkbox" data-id="b-battery"><div class="txt"><b>보조배터리는 기내 가방에</b><span>100Wh 이하, 위탁 수하물 금지, 1인 2개까지. 기내에서 사용과 충전 금지.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="b-medicine"><div class="txt"><b>상비약 (소화제, 진통제)</b></div></label></li>
+      <li><label><input type="checkbox" data-id="b-tissue"><div class="txt"><b>휴지, 물티슈</b><span>휴지가 없는 화장실이 있어요.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="b-bag"><div class="txt"><b>앞으로 멜 수 있는 크로스백</b><span>사람 많은 곳 소매치기 대비.</span></div></label></li>
+    </ul>
+  </div>
+
+  <div class="card" data-group="day">
+    <div class="group-title">출발 당일 (11/21)</div>
+    <div class="progress" data-progress="day"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-id="d-passport"><div class="txt"><b>여권</b></div></label></li>
+      <li><label><input type="checkbox" data-id="d-qr"><div class="txt"><b>입국카드 QR 캡처 확인</b></div></label></li>
+      <li><label><input type="checkbox" data-id="d-airport"><div class="txt"><b>인천공항 08:50 전 도착</b><span>출발 2시간 전. 터미널 다시 확인.</span></div></label></li>
+      <li><label><input type="checkbox" data-id="d-data"><div class="txt"><b>로밍 켜기 또는 eSIM 회선 전환</b></div></label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="cards">
+  <h2><span class="num">08</span>보여주기 카드</h2>
+  <p class="muted" style="margin-top:-6px">'크게 보기'를 누르면 화면 가득 중국어가 나와요. 기사님이나 직원에게 그대로 보여주세요.</p>
+  <div class="phrases">
+    <div class="phrase">
+      <div class="ko">호텔로 가 주세요</div>
+      <div class="zh">师傅，请送我到这里：<br>上海外滩郁锦香新亚大酒店<br>上海市虹口区天潼路422号</div>
+      <div class="btns"><button class="btn" type="button" data-show>크게 보기</button><button class="btn ghost" type="button" data-copy="上海市虹口区天潼路422号 上海外滩郁锦香新亚大酒店">주소 복사</button></div>
+    </div>
+    <div class="phrase">
+      <div class="ko">훙차오공항 1터미널(국제선 출발)로 가 주세요</div>
+      <div class="zh">师傅，请送我到<br>虹桥机场1号航站楼<br>（国际出发）</div>
+      <div class="btns"><button class="btn" type="button" data-show>크게 보기</button><button class="btn ghost" type="button" data-copy="虹桥机场1号航站楼">이름 복사</button></div>
+    </div>
+    <div class="phrase">
+      <div class="ko">고수 빼 주세요</div>
+      <div class="zh">不要香菜</div>
+      <div class="btns"><button class="btn" type="button" data-show>크게 보기</button></div>
+    </div>
+    <div class="phrase">
+      <div class="ko">화장실이 어디예요?</div>
+      <div class="zh">洗手间在哪里？</div>
+      <div class="btns"><button class="btn" type="button" data-show>크게 보기</button></div>
+    </div>
+    <div class="phrase">
+      <div class="ko">계산해 주세요</div>
+      <div class="zh">买单</div>
+      <div class="btns"><button class="btn" type="button" data-show>크게 보기</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="caution">
+  <h2><span class="num">09</span>주의할 점</h2>
+  <div class="card">
+    <ul class="plain">
+      <li><b>찻집, 술집 사기</b>: 난징동루, 인민광장, 와이탄에서 "사진 찍어 줄래요?", "같이 차 마셔요"로 접근해 찻집이나 술집으로 데려가 수십만 원을 청구해요. 따라가지 마세요.</li>
+      <li><b>소매치기</b>: 와이탄 야경 시간, 위위안 골목, 난징동루. 폰과 지갑은 앞으로.</li>
+      <li><b>공항 택시</b>: 공식 'Taxi' 줄에서만. 다가와서 호객하는 기사는 무시.</li>
+      <li><b>와이파이 함정</b>: 중국 와이파이에 연결되면 카톡, 구글, 인스타가 막혀요. 일행 연락은 로밍이나 eSIM 데이터로.</li>
+      <li><b>월요일 휴관</b>: 상하이 박물관 인민광장관은 월요일 휴관. 임시정부 청사와 위위안 정원도 월요일 운영이 불확실해서 일정에서 뺐어요.</li>
+      <li><b>여권은 늘 지참</b>: 관광지 실명 입장, 호텔 체크인, 전망대 예매에 필요해요.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sos">
+  <h2><span class="num">10</span>비상 연락처</h2>
+  <div class="card sos">
+    <ul>
+      <li><span>경찰</span><a href="tel:110">110</a></li>
+      <li><span>구급차</span><a href="tel:120">120</a></li>
+      <li><span>화재</span><a href="tel:119">119</a></li>
+      <li><span>주상하이 총영사관 (근무시간)</span><a href="tel:+862162955000">+86-21-6295-5000</a></li>
+      <li><span>총영사관 긴급 (사건사고, 24시간)</span><a href="tel:+8613816509503">+86-138-1650-9503</a></li>
+      <li><span>외교부 영사콜센터 (서울, 24시간)</span><a href="tel:+82232100404">+82-2-3210-0404</a></li>
+      <li><span>호텔</span><a href="tel:+862163242210">+86-21-6324-2210</a></li>
+    </ul>
+    <p class="muted small">총영사관 주소: <span class="zh-inline">上海市长宁区万山路60号</span></p>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="card">
+    <details>
+      <summary>정보 출처 (2026-11-02 조사)</summary>
+      <ul>
+        <li>무비자 정책: <a href="https://kr.china-embassy.gov.cn/kor/lsfw/lszj/202511/t20251113_11752335.htm" target="_blank" rel="noopener">주한중국대사관</a>, <a href="https://losangeles.china-consulate.gov.cn/eng/visa/Notice/202511/t20251104_11746357.htm" target="_blank" rel="noopener">중국 영사관 공지</a></li>
+        <li>총영사관 연락처: <a href="https://overseas.mofa.go.kr/cn-shanghai-ko/wpge/m_489/contents.do" target="_blank" rel="noopener">주상하이 대한민국 총영사관</a></li>
+        <li>보조배터리 규정: <a href="https://www.mofa.go.kr/cn-ko/brd/m_1237/view.do?seq=1347996" target="_blank" rel="noopener">주중국 대한민국 대사관</a></li>
+        <li>호텔 정보: <a href="https://us.trip.com/hotels/shanghai-hotel-detail-468443/golden-tulip-new-asia-hotelthe-bund-shanghai/" target="_blank" rel="noopener">Trip.com</a>, <a href="https://hotels.ctrip.com/hotels/468443.html" target="_blank" rel="noopener">携程</a></li>
+        <li>훙차오공항 교통: <a href="https://www.shanghaiairport.com/hongqiao/gdjt/index.html" target="_blank" rel="noopener">상하이공항 공식</a>, <a href="https://en.wikipedia.org/wiki/Line_10_(Shanghai_Metro)" target="_blank" rel="noopener">10호선 노선</a></li>
+        <li>자기부상열차: <a href="https://www.wanderinchina.com/destinations/shanghai/transport/maglev/" target="_blank" rel="noopener">Wander in China</a></li>
+        <li>알리페이 카드 등록: <a href="https://kr.trip.com/guide/info/alipay-card-registration.html" target="_blank" rel="noopener">Trip.com 가이드</a></li>
+        <li>상하이타워: <a href="https://www.meet-in-shanghai.net/kr/tourist-attraction/shanghai-tower-observation-deck-682330/" target="_blank" rel="noopener">상하이 관광청</a></li>
+        <li>임시정부 청사: <a href="https://www.meet-in-shanghai.net/cn/museum/office-of-the-former-site-of-the-provisional-government-of-the-republic-of-korea-444634/" target="_blank" rel="noopener">상하이 관광청</a></li>
+        <li>상하이 박물관: <a href="https://korean.shanghai.gov.cn/ko-EditorsPick-travelinshanghai/20250829/6a025dfaa9aa4839bb99b141fedab979.html" target="_blank" rel="noopener">상하이시 정부</a></li>
+        <li>털게 식당: <a href="https://guide.michelin.com/kr/ko/shanghai-municipality/shanghai/restaurant/shanghai" target="_blank" rel="noopener">미쉐린 가이드</a></li>
+        <li>11월 날씨: <a href="https://en.climate-data.org/asia/china/shanghai/shanghai-5582/t/november-11/" target="_blank" rel="noopener">climate-data</a></li>
+      </ul>
+      <p class="muted small">운영 시간, 요금, 정책은 바뀔 수 있어요. 출발 전에 한 번 더 확인해요.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>정보 기준일 2026-11-02 | 즐거운 상하이 여행 되세요</footer>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="big zh" id="overlay-text"></div>
+  <div class="hint">아무 곳이나 누르면 닫혀요</div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'shanghai2026-checks';
+
+  function loadChecks() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  const checks = loadChecks();
+
+  function updateProgress() {
+    document.querySelectorAll('[data-progress]').forEach(el => {
+      const boxes = document.querySelectorAll(`[data-group="${el.dataset.progress}"] input[data-id]`);
+      const done = [...boxes].filter(b => b.checked).length;
+      el.querySelector('.bar span').style.width = `${boxes.length ? (done / boxes.length) * 100 : 0}%`;
+      el.querySelector('.count').textContent = `${done} / ${boxes.length}`;
+    });
+  }
+
+  document.querySelectorAll('input[data-id]').forEach(box => {
+    box.checked = Boolean(checks[box.dataset.id]);
+    box.addEventListener('change', () => {
+      checks[box.dataset.id] = box.checked;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(checks));
+      } catch (e) {
+        // 저장이 막힌 브라우저에서는 체크가 화면에만 남는다
+      }
+      updateProgress();
+    });
+  });
+  updateProgress();
+
+  const dayMs = 86400000;
+  const kstDay = d => Math.floor((d.getTime() + 9 * 3600000) / dayMs);
+  const departure = new Date('2026-11-21T10:50:00+09:00');
+  const arrivalHome = new Date('2026-11-23T21:15:00+09:00');
+  const now = new Date();
+  const daysLeft = kstDay(departure) - kstDay(now);
+  let ddayText = '다녀왔어요';
+  if (daysLeft > 0) ddayText = `D-${daysLeft}`;
+  else if (now < departure) ddayText = 'D-DAY';
+  else if (now < arrivalHome) ddayText = '여행 중';
+  document.getElementById('dday').textContent = ddayText;
+
+  const overlay = document.getElementById('overlay');
+  const overlayText = document.getElementById('overlay-text');
+  document.querySelectorAll('[data-show]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      overlayText.innerHTML = btn.closest('.phrase').querySelector('.zh').innerHTML;
+      overlay.hidden = false;
+    });
+  });
+  overlay.addEventListener('click', () => { overlay.hidden = true; });
+
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    const label = btn.textContent;
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(btn.dataset.copy)
+        .then(() => { btn.textContent = '복사됨'; })
+        .catch(() => { btn.textContent = '복사 안 됨, 글자를 길게 눌러 복사'; })
+        .finally(() => setTimeout(() => { btn.textContent = label; }, 2000));
+    });
+  });
+</script>
+</body>
+</html>
