@@ -127,18 +127,30 @@
   .day-head .d { color: var(--gold); font-weight: 800; }
   .day-head .t { font-weight: 700; }
   .day-body { background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--radius) var(--radius); padding: 6px 16px 12px; }
-  .slot { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
-  .slot:last-child { border-bottom: 0; }
-  .slot .when { font-weight: 800; font-size: 15px; color: var(--navy); }
-  .slot .what b { font-size: 15px; }
-  .slot .what p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
-  .tag { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 5px; padding: 1px 6px; margin-left: 4px; vertical-align: 1px; }
-  .tag.night { background: #e7ecfa; color: #2d4aa8; }
-  .tag.food { background: #fdeee2; color: #b2541c; }
-  .tag.walk { background: #e4f4ea; color: #23784a; }
-  .tag.history { background: #f3e9f9; color: #7b3aa6; }
-  .tag.shop { background: #fdf3d9; color: #8a6510; }
-  .tag.move { background: #eceff3; color: #4a5568; }
+  .day-body .empty { color: var(--muted); font-size: 14px; margin: 10px 0; }
+  .places { list-style: none; margin: 8px 0 0; padding: 0; }
+  .places li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .places li:last-child { border-bottom: 0; }
+  .places b { font-size: 16px; }
+  .places .desc { display: block; font-size: 13px; color: var(--muted); }
+  .places .btn { flex: 0 0 auto; padding: 6px 12px; }
+  .comments { list-style: none; margin: 8px 0 0; padding: 0; }
+  .comments li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .comments .c-head { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .comments .c-body { font-size: 15px; white-space: pre-wrap; }
+  .c-form { display: grid; gap: 8px; margin-top: 12px; }
+  .c-form input, .c-form textarea {
+    font: inherit; font-size: 16px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; width: 100%; background: #fcfbf8;
+  }
+  .c-form textarea { resize: vertical; }
+  .c-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .c-status { font-size: 13px; color: var(--red); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .weather { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .weather .w-icon { font-size: 40px; line-height: 1; }
+  .weather .w-temp { font-size: 22px; font-weight: 800; }
+  .weather .w-trip { width: 100%; border-top: 1px solid var(--line); padding-top: 10px; font-size: 14px; }
+  .weather .w-trip div { display: flex; justify-content: space-between; padding: 3px 0; }
 
   .opt { border-left: 4px solid var(--gold); padding-left: 12px; margin: 12px 0; }
   .opt h3 { font-size: 16px; }
@@ -268,6 +280,17 @@
     </div>
   </div>
 
+  <div class="card weather" style="margin-top:10px">
+    <div class="w-icon" id="w-icon">⏳</div>
+    <div>
+      <div class="muted small">지금 상하이 날씨 <span id="w-time"></span></div>
+      <div class="w-temp" id="w-temp">불러오는 중</div>
+      <div class="muted small" id="w-desc"></div>
+    </div>
+    <div class="w-trip" id="w-trip"></div>
+    <div class="muted small" style="width:100%">날씨 정보: Open-Meteo</div>
+  </div>
+
   <div class="warn" style="font-size:15px;margin-top:12px">
     📌 <b>E티켓과 호텔 예약내역은 혜란이 꼭 캡처해서 전달해 주기!</b><br>
     받으면 다 같이 날짜, 편명, 터미널, 호텔 이름을 확인해요.
@@ -362,49 +385,68 @@
 </section>
 
 <section id="plan">
-  <h2><span class="num">04</span>추천 일정 (초안)</h2>
-  <p class="muted" style="margin-top:-6px">야경, 맛집, 골목 산책, 역사와 쇼핑을 고루 넣었어요. 시간은 모두 <b>현지 시각</b>이고, 같이 보면서 고쳐 나가요.</p>
+  <h2><span class="num">04</span>일정</h2>
+  <p class="muted" style="margin-top:-6px">일정은 같이 정해요. 가고 싶은 곳을 보고 날짜별 댓글로 의견을 남겨 주세요.</p>
+
+  <div class="card">
+    <h3>가고 싶은 곳</h3>
+    <ul class="places">
+      <li>
+        <div><b>점도덕</b> <span class="zh-inline">点都德</span><span class="desc">광둥식 딤섬 체인. 지점이 여러 곳이라 고덕지도에서 가까운 지점을 찾아요.</span></div>
+        <button class="btn ghost" type="button" data-copy="点都德">복사</button>
+      </li>
+      <li>
+        <div><b>와이탄 거리</b> <span class="zh-inline">外滩</span><span class="desc">강변 산책로와 야경. 호텔에서 걸어서 약 15분.</span></div>
+        <button class="btn ghost" type="button" data-copy="外滩">복사</button>
+      </li>
+      <li>
+        <div><b>장씨네 게살국수</b> <span class="zh-inline">庄氏隆兴·非遗蟹点</span><span class="desc">난징동루점 <span class="zh-inline">浙江中路441号</span>. 같은 별명으로 불리는 <span class="zh-inline">张记蟹肉面</span>(징안구)도 있으니 찾은 곳이 맞는지 확인해요.</span></div>
+        <button class="btn ghost" type="button" data-copy="庄氏隆兴">복사</button>
+      </li>
+      <li>
+        <div><b>헌지우이치엔</b> <span class="zh-inline">很久以前羊肉串</span><span class="desc">양꼬치. 유명한 곳은 난징동루 제일백화점 6층 지점, 11:00~새벽 3:00. 한국어 메뉴판 있음.</span></div>
+        <button class="btn ghost" type="button" data-copy="很久以前羊肉串">복사</button>
+      </li>
+    </ul>
+    <p class="muted small">복사 버튼으로 중국어 이름을 복사해서 고덕지도나 다중뎬핑에 붙여 넣으면 돼요.</p>
+  </div>
 
   <div class="day">
-    <div class="day-head"><span class="d">DAY 1</span><span class="t">11/21 (토) 도착, 위위안, 와이탄 야경</span></div>
+    <div class="day-head"><span class="d">DAY 1</span><span class="t">11/21 (토) 약 11:50 푸둥 도착</span></div>
     <div class="day-body">
-      <div class="slot"><div class="when">11:50</div><div class="what"><b>푸둥공항 도착</b><span class="tag move">이동</span><p>입국 심사(온라인 입국카드 QR 준비). 짐 찾고 호텔로.</p></div></div>
-      <div class="slot"><div class="when">13:00</div><div class="what"><b>호텔로 이동</b><span class="tag move">이동</span><p>택시 또는 자기부상열차. 교통 섹션 참고. 체크인은 14시부터라 이르면 짐만 맡겨요.</p></div></div>
-      <div class="slot"><div class="when">14:30</div><div class="what"><b>위위안(예원) 정원</b><span class="tag history">역사</span><span class="tag walk">산책</span><p>10호선 2정거장. 정원은 16:30 전후 문을 닫으니 먼저 보고, 입장료 30~40위안. 월요일 휴무설이 있어서 첫날에 넣었어요.</p></div></div>
-      <div class="slot"><div class="when">16:00</div><div class="what"><b>위위안 상가 + 난샹만두 샤오롱바오</b><span class="tag food">맛집</span><span class="tag shop">쇼핑</span><p>난샹만두점 <span class="zh-inline">南翔馒头店</span> (위위안점). 줄이 길면 상가 구경 먼저.</p></div></div>
-      <div class="slot"><div class="when">17:30</div><div class="what"><b>와이탄 해 질 녘과 야경</b><span class="tag night">야경</span><p>17시 무렵부터 불이 하나씩 켜져요. 소등은 21~22시라 저녁 먹기 전에 한 번, 먹고 나서 한 번 보면 좋아요.</p></div></div>
-      <div class="slot"><div class="when">19:00</div><div class="what"><b>저녁: 상하이 털게</b><span class="tag food">맛집</span><p>11월은 털게 제철. 九江路(주장루) 쪽 식당 '상하이(Shanghai)'가 미쉐린 가이드에 털게로 소개됐어요(예약 권장). 대안은 황허루 <span class="zh-inline">黄河路</span> 먹자골목.</p></div></div>
-      <div class="slot"><div class="when">20:30</div><div class="what"><b>난징동루 보행가 산책 → 호텔까지 걸어서</b><span class="tag night">야경</span><span class="tag shop">쇼핑</span><p>호텔이 와이탄 북쪽이라 걸어서 돌아갈 수 있어요.</p></div></div>
-      <div class="note">비행기가 늦거나 입국 심사가 길어지면 위위안 정원은 건너뛰고 상가와 야경만 봐도 충분해요.</div>
+      <p class="empty">아직 비어 있어요. 이날 하고 싶은 걸 남겨 주세요.</p>
+      <ul class="comments" data-comments="1"></ul>
+      <form class="c-form" data-day="1">
+        <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
+        <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
+        <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
+      </form>
     </div>
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="d">DAY 2</span><span class="t">11/22 (일) 임시정부, 골목 산책, 상하이타워</span></div>
+    <div class="day-head"><span class="d">DAY 2</span><span class="t">11/22 (일) 종일 자유</span></div>
     <div class="day-body">
-      <div class="slot"><div class="when">09:00</div><div class="what"><b>대한민국 임시정부 청사</b><span class="tag history">역사</span><p>10호선 신톈디역. 마당로 <span class="zh-inline">马当路306弄4号</span>. 09:00~11:30, 13:30~17:00 (입장 마감 11:00, 16:30), 20위안. 내부 촬영 불가, 여권 지참.</p></div></div>
-      <div class="slot"><div class="when">10:30</div><div class="what"><b>신톈디 산책과 커피</b><span class="tag walk">산책</span><p>임시정부 청사에서 걸어서 5분. 석고문 골목을 카페 거리로 바꾼 곳.</p></div></div>
-      <div class="slot"><div class="when">12:00</div><div class="what"><b>점심</b><span class="tag food">맛집</span><p>신톈디 주변 식당가.</p></div></div>
-      <div class="slot"><div class="when">13:00</div><div class="what"><b>톈쯔팡</b><span class="tag walk">산책</span><span class="tag shop">쇼핑</span><p>좁은 골목에 공방, 소품 가게. 오후 2시 넘으면 매우 붐벼서 이른 오후에. 신톈디에서 택시 10분 안팎.</p></div></div>
-      <div class="slot"><div class="when">15:00</div><div class="what"><b>안푸루, 우캉루 (옛 프랑스 조계)</b><span class="tag walk">산책</span><p>플라타너스 길, 우캉맨션 사진, 카페. 두 길이 걸어서 이어져요.</p></div></div>
-      <div class="slot"><div class="when">17:30</div><div class="what"><b>루자쭈이로 이동</b><span class="tag move">이동</span><p>자오퉁대학역 10호선 → 난징동루에서 2호선 → 루자쭈이. 약 30~40분.</p></div></div>
-      <div class="slot"><div class="when">18:30</div><div class="what"><b>상하이타워 118층 전망대</b><span class="tag night">야경</span><p>08:30~22:00, 입장 마감 약 21시(출처마다 20:30~21:30). 약 180위안(예약 플랫폼 기준). 실명 예매라 여권번호 필요.</p></div></div>
-      <div class="slot"><div class="when">20:00</div><div class="what"><b>저녁 → 와이탄 건너 호텔로</b><span class="tag food">맛집</span><p>루자쭈이 쇼핑몰 식당가에서 먹거나, 2호선으로 난징동루까지 1정거장 건너와서 먹어요.</p></div></div>
-      <div class="note">임시정부 청사와 위위안 정원은 월요일 휴관 여부가 출처마다 달라서 월요일을 피했어요. 청사 확인 전화 <a href="tel:+862153829057">021-5382-9057</a>.</div>
+      <p class="empty">아직 비어 있어요. 이날 하고 싶은 걸 남겨 주세요.</p>
+      <ul class="comments" data-comments="2"></ul>
+      <form class="c-form" data-day="2">
+        <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
+        <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
+        <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
+      </form>
     </div>
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="d">DAY 3</span><span class="t">11/23 (월) 아침 산책, 쇼핑, 귀국</span></div>
+    <div class="day-head"><span class="d">DAY 3</span><span class="t">11/23 (월) 15:45까지 훙차오 T1</span></div>
     <div class="day-body">
-      <div class="slot"><div class="when">08:30</div><div class="what"><b>아침: 성젠바오</b><span class="tag food">맛집</span><p>바닥을 바삭하게 구운 군만두. 샤오양성젠 <span class="zh-inline">小杨生煎</span>, 다후춘 <span class="zh-inline">大壶春</span> 같은 체인이 많으니 고덕지도로 가까운 곳 검색.</p></div></div>
-      <div class="slot"><div class="when">09:30</div><div class="what"><b>낮의 와이탄과 와이바이두교</b><span class="tag walk">산책</span><p>밤과 전혀 다른 분위기. 호텔에서 걸어갈 거리.</p></div></div>
-      <div class="slot"><div class="when">10:30</div><div class="what"><b>난징동루 기념품 쇼핑</b><span class="tag shop">쇼핑</span><p>차, 과자, 기념품. 상하이 박물관 인민광장관은 <b>월요일 휴관</b>이라 이번엔 빼요.</p></div></div>
-      <div class="slot"><div class="when">12:00</div><div class="what"><b>체크아웃, 짐 맡기기</b><span class="tag move">이동</span><p>프런트에 짐 보관 부탁하고 점심.</p></div></div>
-      <div class="slot"><div class="when">14:30</div><div class="what"><b>호텔에서 짐 찾기</b><span class="tag move">이동</span></div></div>
-      <div class="slot"><div class="when">14:45</div><div class="what"><b>10호선으로 훙차오공항 T1</b><span class="tag move">이동</span><p>톈퉁루역에서 <b>虹桥火车站(훙차오 기차역)행</b> 탑승 → 14정거장 → 虹桥1号航站楼역. 약 40분.</p></div></div>
-      <div class="slot"><div class="when">15:45</div><div class="what"><b>훙차오 T1 도착, 체크인, 출국 심사</b><span class="tag move">이동</span></div></div>
-      <div class="slot"><div class="when">18:15</div><div class="what"><b>출발 → 김포 약 21:15 도착 (한국 시각)</b><span class="tag move">이동</span></div></div>
+      <p class="empty">아직 비어 있어요. 이날 하고 싶은 걸 남겨 주세요.</p>
+      <ul class="comments" data-comments="3"></ul>
+      <form class="c-form" data-day="3">
+        <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
+        <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
+        <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
+      </form>
     </div>
   </div>
 </section>
@@ -502,8 +544,6 @@
       <li><label><input type="checkbox" data-id="p-insurance"><div class="txt"><b>여행자보험 가입</b></div></label></li>
       <li><label><input type="checkbox" data-id="p-card"><div class="txt"><b>해외결제 카드 준비 (Visa, Master)</b><span>카드사 앱에서 해외결제 차단 풀기. 한국 발급 유니온페이는 알리페이 등록이 안 된다는 안내가 있어요.</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-data"><div class="txt"><b>데이터 준비 (로밍 또는 eSIM)</b><span>eSIM은 "중국에서 구글, 카톡 사용 가능(우회)"이 명시된 상품으로.</span></div></label></li>
-      <li><label><input type="checkbox" data-id="p-tower"><div class="txt"><b>(선택) 상하이타워 전망대 예매</b><span>실명 예매라 여권번호 필요.</span></div></label></li>
-      <li><label><input type="checkbox" data-id="p-crab"><div class="txt"><b>(선택) 첫날 저녁 털게 식당 예약</b></div></label></li>
     </ul>
   </div>
 
@@ -582,7 +622,7 @@
       <li><b>소매치기</b>: 와이탄 야경 시간, 위위안 골목, 난징동루. 폰과 지갑은 앞으로.</li>
       <li><b>공항 택시</b>: 공식 'Taxi' 줄에서만. 다가와서 호객하는 기사는 무시.</li>
       <li><b>와이파이 함정</b>: 중국 와이파이에 연결되면 카톡, 구글, 인스타가 막혀요. 일행 연락은 로밍이나 eSIM 데이터로.</li>
-      <li><b>월요일 휴관</b>: 상하이 박물관 인민광장관은 월요일 휴관. 임시정부 청사와 위위안 정원도 월요일 운영이 불확실해서 일정에서 뺐어요.</li>
+      <li><b>월요일 휴관</b>: 상하이 박물관 인민광장관은 월요일 휴관. 임시정부 청사와 위위안 정원도 월요일 운영이 불확실해요. 마지막 날(월) 일정 짤 때 참고해요.</li>
       <li><b>여권은 늘 지참</b>: 관광지 실명 입장, 호텔 체크인, 전망대 예매에 필요해요.</li>
     </ul>
   </div>
@@ -616,10 +656,11 @@
         <li>훙차오공항 교통: <a href="https://www.shanghaiairport.com/hongqiao/gdjt/index.html" target="_blank" rel="noopener">상하이공항 공식</a>, <a href="https://en.wikipedia.org/wiki/Line_10_(Shanghai_Metro)" target="_blank" rel="noopener">10호선 노선</a></li>
         <li>자기부상열차: <a href="https://www.wanderinchina.com/destinations/shanghai/transport/maglev/" target="_blank" rel="noopener">Wander in China</a></li>
         <li>알리페이 카드 등록: <a href="https://kr.trip.com/guide/info/alipay-card-registration.html" target="_blank" rel="noopener">Trip.com 가이드</a></li>
-        <li>상하이타워: <a href="https://www.meet-in-shanghai.net/kr/tourist-attraction/shanghai-tower-observation-deck-682330/" target="_blank" rel="noopener">상하이 관광청</a></li>
         <li>임시정부 청사: <a href="https://www.meet-in-shanghai.net/cn/museum/office-of-the-former-site-of-the-provisional-government-of-the-republic-of-korea-444634/" target="_blank" rel="noopener">상하이 관광청</a></li>
         <li>상하이 박물관: <a href="https://korean.shanghai.gov.cn/ko-EditorsPick-travelinshanghai/20250829/6a025dfaa9aa4839bb99b141fedab979.html" target="_blank" rel="noopener">상하이시 정부</a></li>
-        <li>털게 식당: <a href="https://guide.michelin.com/kr/ko/shanghai-municipality/shanghai/restaurant/shanghai" target="_blank" rel="noopener">미쉐린 가이드</a></li>
+        <li>장씨네 게살국수: <a href="https://guide.theawesomestyle.com/entry/%EC%83%81%ED%95%98%EC%9D%B4-%EB%A7%9B%EC%A7%91-%EC%9E%A5%EC%94%A8%EB%84%A4-%EA%B2%8C%EC%82%B4%EA%B5%AD%EC%88%98%E5%BA%84%E6%B0%8F%E9%9A%86%E5%85%B4-%E9%9D%9E%E9%81%97%E8%9F%B9%E7%82%B9%EB%82%9C%EC%A7%95%EB%8F%99%EB%A3%A8%EC%A0%90" target="_blank" rel="noopener">방문 후기</a></li>
+        <li>헌지우이치엔: <a href="https://triple.guide/restaurants/3c44aeca-bc39-48ea-ac8e-5c35184a7eba" target="_blank" rel="noopener">트리플</a></li>
+        <li>실시간 날씨: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></li>
         <li>11월 날씨: <a href="https://en.climate-data.org/asia/china/shanghai/shanghai-5582/t/november-11/" target="_blank" rel="noopener">climate-data</a></li>
       </ul>
       <p class="muted small">운영 시간, 요금, 정책은 바뀔 수 있어요. 출발 전에 한 번 더 확인해요.</p>
@@ -701,6 +742,152 @@
         .then(() => { btn.textContent = '복사됨'; })
         .catch(() => { btn.textContent = '복사 안 됨, 글자를 길게 눌러 복사'; })
         .finally(() => setTimeout(() => { btn.textContent = label; }, 2000));
+    });
+  });
+
+  const WEATHER_URL = 'https://api.open-meteo.com/v1/forecast?latitude=31.23&longitude=121.47'
+    + '&current=temperature_2m,apparent_temperature,weather_code'
+    + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+    + '&timezone=Asia%2FShanghai&forecast_days=16';
+  const TRIP_DAYS = [['2026-11-21', '11/21 (토)'], ['2026-11-22', '11/22 (일)'], ['2026-11-23', '11/23 (월)']];
+
+  // WMO 날씨 코드 구간 (https://open-meteo.com/en/docs 의 WMO Weather interpretation codes)
+  function describeWeather(code) {
+    if (code === 0) return ['☀️', '맑음'];
+    if (code <= 2) return ['🌤️', '구름 조금'];
+    if (code === 3) return ['☁️', '흐림'];
+    if (code <= 48) return ['🌫️', '안개'];
+    if (code <= 57) return ['🌦️', '이슬비'];
+    if (code <= 67) return ['🌧️', '비'];
+    if (code <= 77) return ['🌨️', '눈'];
+    if (code <= 82) return ['🌦️', '소나기'];
+    if (code <= 86) return ['🌨️', '눈'];
+    return ['⛈️', '뇌우'];
+  }
+
+  fetch(WEATHER_URL)
+    .then(res => res.json())
+    .then(data => {
+      const [icon, desc] = describeWeather(data.current.weather_code);
+      document.getElementById('w-icon').textContent = icon;
+      document.getElementById('w-temp').textContent = `${Math.round(data.current.temperature_2m)}도`;
+      document.getElementById('w-desc').textContent = `${desc}, 체감 ${Math.round(data.current.apparent_temperature)}도`;
+      document.getElementById('w-time').textContent = `(${data.current.time.slice(11)} 현지)`;
+
+      const trip = document.getElementById('w-trip');
+      const forecast = TRIP_DAYS.filter(([date]) => data.daily.time.includes(date));
+      if (forecast.length === 0) {
+        trip.textContent = '여행 날짜 예보는 11/6쯤부터 하나씩 나와요.';
+        return;
+      }
+      trip.replaceChildren(...forecast.map(([date, label]) => {
+        const i = data.daily.time.indexOf(date);
+        const [dayIcon, dayDesc] = describeWeather(data.daily.weather_code[i]);
+        const row = document.createElement('div');
+        const left = document.createElement('span');
+        const right = document.createElement('span');
+        left.textContent = `${label} ${dayIcon} ${dayDesc}`;
+        right.textContent = `${Math.round(data.daily.temperature_2m_min[i])}~${Math.round(data.daily.temperature_2m_max[i])}도, 비 ${data.daily.precipitation_probability_max[i]}%`;
+        row.append(left, right);
+        return row;
+      }));
+    })
+    .catch(() => {
+      document.getElementById('w-icon').textContent = '🌐';
+      document.getElementById('w-temp').textContent = '날씨를 불러오지 못했어요';
+    });
+
+  // 구글 시트 Apps Script 웹 앱 주소. 비어 있으면 댓글 창은 준비 중으로 표시한다
+  const COMMENTS_URL = '';
+  const NAME_KEY = 'shanghai2026-name';
+  const forms = document.querySelectorAll('.c-form');
+
+  function formatTime(iso) {
+    const d = new Date(iso);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getMonth() + 1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  function renderComments(comments) {
+    document.querySelectorAll('[data-comments]').forEach(list => {
+      const mine = comments.filter(c => c.day === list.dataset.comments);
+      list.replaceChildren(...mine.map(c => {
+        const li = document.createElement('li');
+        const head = document.createElement('div');
+        const body = document.createElement('div');
+        head.className = 'c-head';
+        body.className = 'c-body';
+        head.textContent = `${c.name} | ${formatTime(c.time)}`;
+        body.textContent = c.text;
+        li.append(head, body);
+        return li;
+      }));
+      list.parentElement.querySelector('.empty').hidden = mine.length > 0;
+    });
+  }
+
+  async function loadComments() {
+    const res = await fetch(COMMENTS_URL);
+    renderComments(await res.json());
+  }
+
+  if (!COMMENTS_URL) {
+    forms.forEach(form => {
+      form.querySelector('button').disabled = true;
+      form.querySelector('.c-status').textContent = '댓글 기능 준비 중이에요';
+    });
+  } else {
+    loadComments().catch(() => {
+      document.querySelectorAll('.day-body .empty').forEach(el => {
+        el.textContent = '댓글을 불러오지 못했어요. 새로고침해 주세요.';
+      });
+    });
+  }
+
+  let savedName = '';
+  try {
+    savedName = localStorage.getItem(NAME_KEY) || '';
+  } catch (e) {
+    // 저장이 막힌 브라우저에서는 이름을 매번 입력한다
+  }
+
+  forms.forEach(form => {
+    form.elements.author.value = savedName;
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!COMMENTS_URL) return;
+      const btn = form.querySelector('button');
+      const status = form.querySelector('.c-status');
+      const author = form.elements.author.value.trim();
+      const message = form.elements.message.value.trim();
+      if (!author || !message) {
+        status.textContent = '이름과 내용을 적어 주세요';
+        return;
+      }
+      btn.disabled = true;
+      status.textContent = '저장 중...';
+      try {
+        localStorage.setItem(NAME_KEY, author);
+      } catch (err) {
+        // 이름 기억만 못 할 뿐 댓글 저장은 계속한다
+      }
+      try {
+        // Content-Type을 지정하지 않아야 Apps Script가 막는 사전 요청(preflight)이 생기지 않는다
+        const res = await fetch(COMMENTS_URL, {
+          method: 'POST',
+          body: JSON.stringify({ day: form.dataset.day, name: author, text: message }),
+        });
+        const result = await res.json();
+        if (!result.ok) throw new Error('rejected');
+        forms.forEach(f => { if (!f.elements.author.value.trim()) f.elements.author.value = author; });
+        form.elements.message.value = '';
+        status.textContent = '';
+        await loadComments();
+      } catch (err) {
+        status.textContent = '저장하지 못했어요. 잠시 후 다시 눌러 주세요';
+      } finally {
+        btn.disabled = false;
+      }
     });
   });
 </script>
