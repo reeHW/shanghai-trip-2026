@@ -74,7 +74,7 @@
   h3 { font-size: 17px; margin: 0 0 6px; }
   .card {
     background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 16px; margin-bottom: 12px;
+    padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(15, 29, 51, .05);
   }
   .muted { color: var(--muted); font-size: 14px; }
   .small { font-size: 13px; }
@@ -87,7 +87,7 @@
     padding: 10px 12px; font-size: 14px; margin-top: 10px;
   }
   .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; box-shadow: 0 1px 3px rgba(15, 29, 51, .05); }
   .tile .label { font-size: 12px; color: var(--muted); font-weight: 700; }
   .tile .value { font-size: 16px; font-weight: 700; margin-top: 2px; }
   .tile .sub { font-size: 13px; color: var(--muted); }
@@ -176,6 +176,25 @@
   .checklist .txt > span { display: block; font-size: 13px; color: var(--muted); }
   .checklist input:checked + .txt b { text-decoration: line-through; color: var(--muted); }
   .group-title { font-size: 15px; font-weight: 800; margin: 0 0 4px; display: flex; justify-content: space-between; align-items: center; }
+  details.fold { padding: 0; }
+  details.fold > summary {
+    list-style: none; cursor: pointer; padding: 14px 16px;
+    display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; align-items: center;
+  }
+  details.fold > summary::-webkit-details-marker { display: none; }
+  details.fold > summary::after { content: "▾"; color: var(--muted); grid-column: 2; grid-row: 1; transition: transform .2s; }
+  details.fold[open] > summary::after { transform: rotate(180deg); }
+  details.fold > summary .group-title { margin: 0; }
+  details.fold > summary .progress { grid-column: 1 / -1; margin: 0; }
+  details.fold > .checklist { padding: 0 16px; border-top: 1px solid var(--line); }
+  details.fold > p { padding: 0 16px 14px; margin: 0; }
+  details.opt > summary { list-style: none; cursor: pointer; font-weight: 700; font-size: 16px; }
+  details.opt > summary::-webkit-details-marker { display: none; }
+  details.opt > summary::after { content: " ▾"; color: var(--muted); }
+  details.opt[open] > summary::after { content: " ▴"; }
+  details.opt > ul { margin-top: 6px; }
+  .c-open { width: 100%; margin-top: 10px; }
+  .c-form[hidden] { display: none; }
   .lv { font-size: 11px; font-weight: 800; border-radius: 5px; padding: 1px 6px; margin-left: 6px; vertical-align: 1px; }
   .lv.must { background: var(--red); color: #fff; }
   .lv.rec { background: var(--gold); color: var(--navy); }
@@ -267,17 +286,17 @@
     <div class="tile">
       <div class="label">일정</div>
       <div class="value">2박 3일</div>
-      <div class="sub">토요일 출발, 월요일 귀국</div>
+      <div class="sub">토 출발, 월 귀국</div>
     </div>
     <div class="tile">
       <div class="label">시차</div>
-      <div class="value">한국보다 1시간 느림</div>
-      <div class="sub">서울 12시 = 상하이 11시</div>
+      <div class="value">1시간 느림</div>
+      <div class="sub">한국 12시면 11시</div>
     </div>
     <div class="tile">
       <div class="label">11월 하순 날씨</div>
       <div class="value">5 ~ 15도</div>
-      <div class="sub">평년 기준. 겹쳐 입기, 우산</div>
+      <div class="sub">평년 기준, 겹쳐 입기</div>
     </div>
     <div class="tile">
       <div class="label">비자</div>
@@ -428,7 +447,8 @@
       </div>
       <p class="empty">아직 댓글이 없어요. 이날 하고 싶은 걸 남겨 주세요.</p>
       <ul class="comments" data-comments="1"></ul>
-      <form class="c-form" data-day="1">
+      <button class="btn ghost c-open" type="button">✏️ 댓글 쓰기</button>
+      <form class="c-form" data-day="1" hidden>
         <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
         <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
         <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
@@ -441,7 +461,8 @@
     <div class="day-body">
       <p class="empty">아직 댓글이 없어요. 이날 하고 싶은 걸 남겨 주세요.</p>
       <ul class="comments" data-comments="2"></ul>
-      <form class="c-form" data-day="2">
+      <button class="btn ghost c-open" type="button">✏️ 댓글 쓰기</button>
+      <form class="c-form" data-day="2" hidden>
         <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
         <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
         <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
@@ -461,7 +482,8 @@
       </div>
       <p class="empty">아직 댓글이 없어요. 이날 하고 싶은 걸 남겨 주세요.</p>
       <ul class="comments" data-comments="3"></ul>
-      <form class="c-form" data-day="3">
+      <button class="btn ghost c-open" type="button">✏️ 댓글 쓰기</button>
+      <form class="c-form" data-day="3" hidden>
         <input name="author" placeholder="이름" maxlength="20" autocomplete="off">
         <textarea name="message" placeholder="가고 싶은 곳, 먹고 싶은 것" maxlength="500" rows="2"></textarea>
         <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">남기기</button></div>
@@ -475,29 +497,29 @@
 
   <div class="card">
     <h3>푸둥공항(PVG) → 호텔</h3>
-    <div class="opt">
-      <h3>① 택시 또는 DiDi <span class="badge gold">짐 있을 때 추천</span></h3>
+    <details class="opt" open>
+      <summary>① 택시 또는 DiDi <span class="badge gold">짐 있을 때 추천</span></summary>
       <ul>
         <li>도착층 1층 'Taxi' 표지의 <b>공식 줄</b>에서만 타기</li>
         <li>약 45~60분 (막히면 90분), 약 150~250위안 + 통행료. 여럿이 나누면 부담이 적어요</li>
         <li>기사님께 아래 '호텔 카드'를 보여주세요</li>
       </ul>
-    </div>
-    <div class="opt">
-      <h3>② 자기부상열차 + 지하철 <span class="badge">빠르고 재밌음</span></h3>
+    </details>
+    <details class="opt">
+      <summary>② 자기부상열차 + 지하철 <span class="badge">빠르고 재밌음</span></summary>
       <ul>
         <li>자기부상열차 <span class="zh-inline">磁悬浮</span> 푸둥공항 → 룽양루 <span class="zh-inline">龙阳路</span> 약 8분</li>
         <li>편도 50위안, 당일 탑승권을 보여주면 40위안. <b>표를 따로 사야 해요</b>(알리페이 지하철 QR 안 됨)</li>
         <li>룽양루에서 2호선 → 난징동루에서 10호선 1정거장 → 톈퉁루 3번 출구 도보 5분. 전체 약 1시간</li>
       </ul>
-    </div>
-    <div class="opt">
-      <h3>③ 지하철만 <span class="badge">가장 저렴</span></h3>
+    </details>
+    <details class="opt">
+      <summary>③ 지하철만 <span class="badge">가장 저렴</span></summary>
       <ul>
         <li>푸둥공항역 2호선 → 난징동루 → 10호선 1정거장 → 톈퉁루. 약 75~90분, 몇 위안</li>
         <li>열차에 따라 중간 광란루 <span class="zh-inline">广兰路</span>역에서 같은 2호선 열차로 갈아타야 할 수 있어요(안내 방송 확인)</li>
       </ul>
-    </div>
+    </details>
   </div>
 
   <div class="card">
@@ -531,8 +553,11 @@
 
 <section id="apps">
   <h2><span class="num">06</span>깔아야 할 앱</h2>
-  <div class="card" data-group="apps">
-    <div class="progress" data-progress="apps"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+  <details class="card fold" data-group="apps">
+    <summary>
+      <span class="group-title">앱 10개 (필수 4, 권장 3, 선택 3)</span>
+      <span class="progress" data-progress="apps"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
+    </summary>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="a-alipay"><div class="txt"><b>알리페이 <span class="zh-inline">支付宝</span><span class="lv must">필수</span></b><span>결제, 지하철 QR, DiDi 택시 호출까지 이거 하나로. 한국에서 미리 가입하고 카드 등록.</span></div></label></li>
       <li><label><input type="checkbox" data-id="a-amap"><div class="txt"><b>고덕지도 <span class="zh-inline">高德地图</span> (Amap)<span class="lv must">필수</span></b><span>중국 길찾기는 이게 정확해요. 영어 화면을 지원하지만 한국어 검색은 안 돼서 중국어 이름을 붙여 넣어야 해요.</span></div></label></li>
@@ -546,16 +571,18 @@
       <li><label><input type="checkbox" data-id="a-metroman"><div class="txt"><b>MetroMan<span class="lv opt2">선택</span></b><span>지하철 노선도와 환승 안내.</span></div></label></li>
     </ul>
     <p class="muted small">입국카드는 웹(s.nia.gov.cn)으로 작성하면 별도 앱이 필요 없어요.</p>
-  </div>
+  </details>
 </section>
 
 <section id="prep">
   <h2><span class="num">07</span>준비물 체크리스트</h2>
   <p class="muted" style="margin-top:-6px">체크 표시는 각자 폰에만 저장돼요. 친구 화면에는 안 보여요.</p>
 
-  <div class="card" data-group="now">
-    <div class="group-title">지금 바로 (출발 2주 전까지)</div>
-    <div class="progress" data-progress="now"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+  <details class="card fold" data-group="now">
+    <summary>
+      <span class="group-title">지금 바로 (출발 2주 전까지)</span>
+      <span class="progress" data-progress="now"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
+    </summary>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="p-passport"><div class="txt"><b>여권 유효기간 확인</b><span>6개월 이상 남아 있으면 안전. 임시여권은 무비자 대상이 아니에요.</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-ticket"><div class="txt"><b>E티켓 캡처 받아서 확인</b><span>혜란이 전달. 편명, 인천 출발 터미널, 푸둥 도착 터미널 확인.</span></div></label></li>
@@ -564,11 +591,13 @@
       <li><label><input type="checkbox" data-id="p-card"><div class="txt"><b>해외결제 카드 준비 (Visa, Master)</b><span>카드사 앱에서 해외결제 차단 풀기. 한국 발급 유니온페이는 알리페이 등록이 안 된다는 안내가 있어요.</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-data"><div class="txt"><b>데이터 준비 (로밍 또는 eSIM)</b><span>eSIM은 "중국에서 구글, 카톡 사용 가능(우회)"이 명시된 상품으로.</span></div></label></li>
     </ul>
-  </div>
+  </details>
 
-  <div class="card" data-group="before">
-    <div class="group-title">출발 3~5일 전 (11/16 ~ 11/18)</div>
-    <div class="progress" data-progress="before"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+  <details class="card fold" data-group="before">
+    <summary>
+      <span class="group-title">출발 3~5일 전 (11/16 ~ 11/18)</span>
+      <span class="progress" data-progress="before"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
+    </summary>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="p-alipay"><div class="txt"><b>알리페이 가입, 카드 등록, 여권 실명인증</b><span>1건 200위안 넘는 결제부터 약 3% 수수료가 붙어요(카드사 해외 수수료 별도).</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-metro"><div class="txt"><b>알리페이에서 상하이 지하철 QR 열어 두기</b></div></label></li>
@@ -577,28 +606,32 @@
       <li><label><input type="checkbox" data-id="p-cash"><div class="txt"><b>비상용 소액 위안화 환전</b><span>작은 가게, 택시, 결제 오류 대비. 길거리 환전상은 피하기.</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-copy"><div class="txt"><b>여권 사진면 사진 저장 + 종이 사본 1장</b></div></label></li>
     </ul>
-  </div>
+  </details>
 
-  <div class="card" data-group="d72">
-    <div class="group-title">출발 72시간 안 (11/19 ~ 11/20)</div>
-    <div class="progress" data-progress="d72"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+  <details class="card fold" data-group="d72">
+    <summary>
+      <span class="group-title">출발 72시간 안 (11/19 ~ 11/20)</span>
+      <span class="progress" data-progress="d72"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
+    </summary>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="p-arrival"><div class="txt"><b>온라인 입국카드 작성 → QR 캡처</b><span>중국 이민관리국 공식 페이지 <a href="https://s.nia.gov.cn/ArrivalCardFillingPhone/" target="_blank" rel="noopener">s.nia.gov.cn</a> (무료). 한 명이 동반자 10명까지 같이 등록 가능. QR은 72시간 유효라 11/19~20에 작성. 돈 받는 가짜 대행 사이트 주의. 공항에서 종이로 써도 된다는 안내도 있어요.</span></div></label></li>
       <li><label><input type="checkbox" data-id="p-weather"><div class="txt"><b>상하이 날씨 확인하고 옷 정하기</b></div></label></li>
       <li><label><input type="checkbox" data-id="p-checkin"><div class="txt"><b>항공사 온라인 체크인 (되는 경우)</b></div></label></li>
     </ul>
-  </div>
+  </details>
 
-  <div class="card" data-group="day">
-    <div class="group-title">출발 당일 (11/21)</div>
-    <div class="progress" data-progress="day"><div class="bar"><span></span></div><div class="count">0 / 0</div></div>
+  <details class="card fold" data-group="day">
+    <summary>
+      <span class="group-title">출발 당일 (11/21)</span>
+      <span class="progress" data-progress="day"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
+    </summary>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="d-passport"><div class="txt"><b>여권</b></div></label></li>
       <li><label><input type="checkbox" data-id="d-qr"><div class="txt"><b>입국카드 QR 캡처 확인</b></div></label></li>
       <li><label><input type="checkbox" data-id="d-airport"><div class="txt"><b>인천공항 08:50 전 도착</b><span>출발 2시간 전. 터미널 다시 확인.</span></div></label></li>
       <li><label><input type="checkbox" data-id="d-data"><div class="txt"><b>로밍 켜기 또는 eSIM 회선 전환</b></div></label></li>
     </ul>
-  </div>
+  </details>
 </section>
 
 <section id="cards">
@@ -851,9 +884,9 @@
   }
 
   if (!COMMENTS_URL) {
-    forms.forEach(form => {
-      form.querySelector('button').disabled = true;
-      form.querySelector('.c-status').textContent = '댓글 기능 준비 중이에요';
+    document.querySelectorAll('.c-open').forEach(btn => {
+      btn.disabled = true;
+      btn.textContent = '댓글 기능 준비 중이에요';
     });
   } else {
     loadComments().catch(() => {
@@ -872,6 +905,12 @@
 
   forms.forEach(form => {
     form.elements.author.value = savedName;
+    const opener = form.previousElementSibling;
+    opener.addEventListener('click', () => {
+      opener.hidden = true;
+      form.hidden = false;
+      form.elements.message.focus();
+    });
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!COMMENTS_URL) return;
@@ -901,6 +940,8 @@
         forms.forEach(f => { if (!f.elements.author.value.trim()) f.elements.author.value = author; });
         form.elements.message.value = '';
         status.textContent = '';
+        form.hidden = true;
+        opener.hidden = false;
         await loadComments();
       } catch (err) {
         status.textContent = '저장하지 못했어요. 잠시 후 다시 눌러 주세요';
