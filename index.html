@@ -6,8 +6,15 @@
 <meta name="theme-color" content="#ffd6e4">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
 <title>상하이 야르렁 trip</title>
+<meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="상하이 야르렁 trip">
 <meta property="og:description" content="11/21(토) ~ 11/23(월) 항공, 호텔, 일정, 필수 앱, 준비물 체크리스트">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reehw.github.io/shanghai-trip-2026/">
+<meta property="og:image" content="https://reehw.github.io/shanghai-trip-2026/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     --ink: #3d2c3e;
@@ -24,7 +31,7 @@
     --radius: 20px;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
@@ -106,7 +113,8 @@
   nav.chips a {
     flex: 0 0 auto; text-decoration: none; color: var(--ink);
     background: #fff; border: 1px solid var(--line); border-radius: 999px;
-    padding: 5px 12px; font-size: 14px; font-weight: 600;
+    padding: 5px 14px; font-size: 14px; font-weight: 600;
+    display: inline-flex; align-items: center; min-height: 44px;
   }
   nav.chips a:hover, nav.chips a:active { background: var(--pink-soft); }
 
@@ -130,7 +138,7 @@
   }
   .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; box-shadow: 0 2px 8px rgba(204, 58, 104, .05); }
-  .tile .label { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .tile .label { font-size: 13px; color: var(--muted); font-weight: 700; }
   .tile .value { font-size: 16px; font-weight: 700; margin-top: 2px; }
   .tile .sub { font-size: 13px; color: var(--muted); }
 
@@ -141,7 +149,7 @@
   .flight .place { font-size: 13px; color: var(--muted); }
   .flight .line { flex: 1; height: 3px; background: repeating-linear-gradient(90deg, var(--pink) 0 6px, transparent 6px 12px); border-radius: 3px; position: relative; }
   .flight .line::after { content: "✈"; position: absolute; left: 50%; top: -14px; transform: translateX(-50%); font-size: 20px; color: var(--pink-deep); }
-  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #f4eef1; color: var(--muted); }
+  .badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #f4eef1; color: var(--muted); }
   .badge.red { background: var(--pink-soft); color: var(--pink-deep); }
   .badge.gold { background: var(--yellow-soft); color: #8a5a10; }
 
@@ -153,6 +161,7 @@
     appearance: none; border: 1px solid var(--pink-deep); background: var(--pink-deep); color: #fff;
     border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 700; cursor: pointer;
     text-decoration: none; font-family: inherit;
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
   }
   .btn.ghost { background: #fff; color: var(--pink-deep); }
 
@@ -178,16 +187,18 @@
   .slot .what b { font-size: 15px; }
   .slot .what p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
   .places { list-style: none; margin: 8px 0 0; padding: 0; }
-  .places li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .places li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .places li > div:first-child { flex: 1 1 100%; }
+  .place-actions { display: flex; flex-wrap: wrap; gap: 8px; }
   .places li:last-child { border-bottom: 0; }
   .places b { font-size: 16px; }
   .places .desc { display: block; font-size: 13px; color: var(--muted); }
   .places .btn { flex: 0 0 auto; padding: 6px 12px; }
   #added-places:not(:empty) { border-top: 1px solid var(--line); margin-top: 0; }
-  .places .by { display: block; font-size: 12px; color: var(--pink-deep); font-weight: 700; }
+  .places .by { display: block; font-size: 13px; color: var(--pink-deep); font-weight: 700; }
   .comments { list-style: none; margin: 8px 0 0; padding: 0; }
   .comments li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
-  .comments .c-head { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .comments .c-head { font-size: 13px; color: var(--muted); font-weight: 700; }
   .comments .c-body { font-size: 15px; white-space: pre-wrap; }
   .c-form { display: grid; gap: 8px; margin-top: 12px; }
   .c-form input, .c-form textarea {
@@ -204,7 +215,7 @@
   .weather .w-trip div { display: flex; justify-content: space-between; padding: 3px 0; }
   .fx-row { display: flex; align-items: flex-end; gap: 8px; margin-top: 8px; }
   .fx-row label { flex: 1; min-width: 0; }
-  .fx-row label span { display: block; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .fx-row label span { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
   .fx-row input {
     font: inherit; font-size: 20px; font-weight: 700; width: 100%; padding: 8px 12px;
     border: 1px solid var(--line); border-radius: 12px; background: #fffafb; color: var(--ink);
@@ -250,7 +261,7 @@
   details.opt > ul { margin-top: 6px; }
   .c-open, .place-open { width: 100%; margin-top: 10px; }
   .c-form[hidden] { display: none; }
-  .lv { font-size: 11px; font-weight: 800; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
+  .lv { font-size: 13px; font-weight: 800; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
   .lv.must { background: var(--red); color: #fff; }
   .lv.rec { background: var(--yellow); color: var(--ink); }
   .lv.opt2 { background: #f4eef1; color: var(--muted); }
@@ -269,11 +280,37 @@
 
   ul.plain { margin: 0; padding-left: 18px; }
   ul.plain li { margin: 6px 0; font-size: 15px; }
-  .sos a { font-weight: 700; text-decoration: none; }
+  .sos a { font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+  dl.kv a[href^="tel:"] { display: inline-flex; align-items: center; min-height: 44px; }
   .sos li { list-style: none; display: flex; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
   .sos li:last-child { border-bottom: 0; }
   .sos ul { margin: 0; padding: 0; }
   details summary { cursor: pointer; font-weight: 700; }
+  details.opt > summary { padding: 10px 0; }
+  #sources summary { display: flex; align-items: center; min-height: 44px; }
+
+  .sec-fold > summary { list-style: none; cursor: pointer; min-height: 44px; display: block; }
+  .sec-fold > summary::-webkit-details-marker { display: none; }
+  .sec-fold > summary h2 { margin: 0; }
+  .sec-fold[open] > summary { margin-bottom: 12px; }
+  .sec-fold li { word-break: keep-all; }
+  .fold-hint { margin-left: auto; font-size: 14px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .fold-hint .h-open, .sec-fold[open] .fold-hint .h-closed { display: none; }
+  .sec-fold[open] .fold-hint .h-open { display: inline; }
+
+  .today-wrap { max-width: 760px; margin: 0 auto; padding: 16px 16px 0; }
+  .today-wrap[hidden] { display: none; }
+  .today { background: var(--pink-soft); border-color: var(--pink); margin-bottom: 0; }
+  .today-title { font-size: 17px; font-weight: 800; color: var(--pink-deep); margin-bottom: 6px; }
+  .today-list { list-style: none; margin: 0 0 4px; padding: 0; }
+  .today-list li { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 6px 0; font-size: 15px; }
+  .today-list .when { font-weight: 800; color: var(--pink-deep); }
+
+  .filter-row { padding: 0 16px; border-top: 1px solid var(--line); }
+  .filter-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; font-size: 14px; font-weight: 700; }
+  .filter-toggle input { width: 22px; height: 22px; margin: 0; accent-color: var(--pink-deep); }
+  .prep-filter { margin-bottom: 8px; }
+  .checklist li.is-hidden { display: none; }
   details ul { font-size: 13px; padding-left: 18px; }
   details li { margin: 4px 0; word-break: break-all; }
   footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
@@ -322,6 +359,14 @@
   </svg>
 </header>
 
+<div class="today-wrap" id="today" hidden>
+  <div class="card today">
+    <div class="today-title" id="today-title"></div>
+    <ul class="today-list" id="today-list"></ul>
+    <div class="btns"><a class="btn" href="#cards">보여주기 카드 바로가기</a></div>
+  </div>
+</div>
+
 <nav class="chips" aria-label="섹션 바로가기">
   <a href="#summary">요약</a>
   <a href="#flight">항공</a>
@@ -339,6 +384,7 @@
 
 <section id="summary">
   <h2><span class="num" aria-hidden="true">👀</span>한눈에 보기</h2>
+  <div class="note" style="margin:0 0 10px">📶 현지 와이파이에서는 이 페이지가 느리거나 안 열릴 수 있어요. 홈 화면에 추가하고, 보여주기 카드는 미리 캡처해 두세요.</div>
   <div class="tiles">
     <div class="tile">
       <div class="label">일정</div>
@@ -519,8 +565,8 @@
       <div class="slots">
         <div class="slot"><div class="when">10:50</div><div class="what"><b>인천 출발 (한국 시각)</b><p>08:50까지 인천공항 도착. 터미널은 e티켓 확인.</p></div></div>
         <div class="slot"><div class="when">11:50</div><div class="what"><b>푸둥공항 도착 (현지, 예상)</b><p>입국 심사(입국카드 QR 준비), 짐 찾기.</p></div></div>
-        <div class="slot"><div class="when">13:00</div><div class="what"><b>호텔로 이동</b><p>택시 약 45~60분, 또는 자기부상열차 + 지하철 약 1시간. 교통 섹션 참고.</p></div></div>
-        <div class="slot"><div class="when">14:00</div><div class="what"><b>호텔 체크인</b><p>14시부터 가능.</p></div></div>
+        <div class="slot"><div class="when">13:00</div><div class="what"><b>공항 출발</b><p>입국 심사와 짐 찾기에 45~60분쯤 걸려요. 택시 약 45~60분, 또는 자기부상열차 + 지하철 약 1시간. 교통 섹션 참고.</p></div></div>
+        <div class="slot"><div class="when">14:00<br>~14:30</div><div class="what"><b>호텔 도착, 체크인</b><p>체크인은 14시부터 가능해요. 이동 시간에 따라 14:30쯤 도착할 수 있어요.</p></div></div>
       </div>
       <p class="empty">아직 댓글이 없어요. 이날 하고 싶은 걸 남겨 주세요.</p>
       <ul class="comments" data-comments="1"></ul>
@@ -570,7 +616,8 @@
 </section>
 
 <section id="move">
-  <h2><span class="num" aria-hidden="true">🚇</span>교통 동선</h2>
+  <details class="sec-fold">
+  <summary><h2><span class="num" aria-hidden="true">🚇</span>교통 동선<span class="fold-hint"><span class="h-closed">펼치기 ▾</span><span class="h-open">접기 ▴</span></span></h2></summary>
 
   <div class="card">
     <h3>푸둥공항(PVG) → 호텔</h3>
@@ -626,6 +673,7 @@
       <li><b>택시</b>: 알리페이 안의 DiDi로 부르면 목적지가 중국어로 전달돼서 편해요</li>
     </ul>
   </div>
+  </details>
 </section>
 
 <section id="apps">
@@ -635,6 +683,7 @@
       <span class="group-title">앱 10개 (필수 4, 권장 3, 선택 3)</span>
       <span class="progress" data-progress="apps"><span class="bar"><span></span></span><span class="count">0 / 0</span></span>
     </summary>
+    <div class="filter-row"><label class="filter-toggle"><input type="checkbox" id="filter-must">필수만 보기</label></div>
     <ul class="checklist">
       <li><label><input type="checkbox" data-id="a-alipay"><div class="txt"><b>알리페이 <span class="zh-inline">支付宝</span><span class="lv must">필수</span></b><span>결제, 지하철 QR, DiDi 택시 호출까지 이거 하나로. 한국에서 미리 가입하고 카드 등록.</span></div></label></li>
       <li><label><input type="checkbox" data-id="a-amap"><div class="txt"><b>고덕지도 <span class="zh-inline">高德地图</span> (Amap)<span class="lv must">필수</span></b><span>중국 길찾기는 이게 정확해요. 영어 화면을 지원하지만 한국어 검색은 안 돼서 중국어 이름을 붙여 넣어야 해요.</span></div></label></li>
@@ -654,6 +703,7 @@
 <section id="prep">
   <h2><span class="num" aria-hidden="true">🎒</span>준비물 체크리스트</h2>
   <p class="muted" style="margin-top:-6px">체크 표시는 각자 폰에만 저장돼요. 친구 화면에는 안 보여요.</p>
+  <div class="prep-filter"><label class="filter-toggle"><input type="checkbox" id="filter-remain">남은 것만 보기</label></div>
 
   <details class="card fold" data-group="now">
     <summary>
@@ -744,7 +794,8 @@
 </section>
 
 <section id="caution">
-  <h2><span class="num" aria-hidden="true">🙅</span>주의할 점</h2>
+  <details class="sec-fold">
+  <summary><h2><span class="num" aria-hidden="true">🙅</span>주의할 점<span class="fold-hint"><span class="h-closed">펼치기 ▾</span><span class="h-open">접기 ▴</span></span></h2></summary>
   <div class="card">
     <ul class="plain">
       <li><b>찻집, 술집 사기</b>: 난징동루, 인민광장, 와이탄에서 "사진 찍어 줄래요?", "같이 차 마셔요"로 접근해 찻집이나 술집으로 데려가 수십만 원을 청구해요. 따라가지 마세요.</li>
@@ -755,10 +806,12 @@
       <li><b>여권은 늘 지참</b>: 관광지 실명 입장, 호텔 체크인, 전망대 예매에 필요해요.</li>
     </ul>
   </div>
+  </details>
 </section>
 
 <section id="sos">
-  <h2><span class="num" aria-hidden="true">🚑</span>비상 연락처</h2>
+  <details class="sec-fold">
+  <summary><h2><span class="num" aria-hidden="true">🚑</span>비상 연락처<span class="fold-hint"><span class="h-closed">펼치기 ▾</span><span class="h-open">접기 ▴</span></span></h2></summary>
   <div class="card sos">
     <ul>
       <li><span>경찰</span><a href="tel:110">110</a></li>
@@ -771,6 +824,7 @@
     </ul>
     <p class="muted small">총영사관 주소: <span class="zh-inline">上海市长宁区万山路60号</span></p>
   </div>
+  </details>
 </section>
 
 <section id="sources">
@@ -838,9 +892,56 @@
         // 저장이 막힌 브라우저에서는 체크가 화면에만 남는다
       }
       updateProgress();
+      applyFilters();
     });
   });
   updateProgress();
+
+  const FILTER_KEY = 'shanghai2026-filters';
+  const filterMust = document.getElementById('filter-must');
+  const filterRemain = document.getElementById('filter-remain');
+  let filters = {};
+  try {
+    filters = JSON.parse(localStorage.getItem(FILTER_KEY)) || {};
+  } catch (e) {
+    filters = {};
+  }
+
+  // 진행률은 updateProgress가 전체 체크박스 기준으로 따로 세므로 숨긴 항목도 센다
+  function applyFilters() {
+    document.querySelectorAll('[data-group="apps"] .checklist li').forEach(li => {
+      li.classList.toggle('is-hidden', filterMust.checked && !li.querySelector('.lv.must'));
+    });
+    document.querySelectorAll('#prep .checklist li').forEach(li => {
+      li.classList.toggle('is-hidden', filterRemain.checked && li.querySelector('input[data-id]').checked);
+    });
+  }
+
+  [[filterMust, 'must'], [filterRemain, 'remain']].forEach(([box, key]) => {
+    box.checked = Boolean(filters[key]);
+    box.addEventListener('change', () => {
+      filters[key] = box.checked;
+      try {
+        localStorage.setItem(FILTER_KEY, JSON.stringify(filters));
+      } catch (e) {
+        // 저장이 막힌 브라우저에서는 이번 방문 동안만 유지된다
+      }
+      applyFilters();
+    });
+  });
+  applyFilters();
+
+  // 접힌 섹션은 nav 링크나 주소 해시로 이동할 때 자동으로 펼친다
+  function openFoldedSection(hash) {
+    const target = hash && document.getElementById(hash.slice(1));
+    const fold = target && target.querySelector(':scope > details.sec-fold');
+    if (fold) fold.open = true;
+  }
+  document.querySelectorAll('nav.chips a, .today a').forEach(a => {
+    a.addEventListener('click', () => openFoldedSection(a.getAttribute('href')));
+  });
+  window.addEventListener('hashchange', () => openFoldedSection(location.hash));
+  openFoldedSection(location.hash);
 
   const dayMs = 86400000;
   const kstDay = d => Math.floor((d.getTime() + 9 * 3600000) / dayMs);
@@ -853,6 +954,30 @@
   else if (now < departure) ddayText = 'D-DAY';
   else if (now < arrivalHome) ddayText = '여행 중';
   document.getElementById('dday').textContent = ddayText;
+
+  // 여행 중 모드: 한국시간 11/21 00:00 ~ 11/23 23:59에 오늘 카드를 보여준다. ?today=1~3으로 강제 표시
+  const tripStart = new Date('2026-11-21T00:00:00+09:00');
+  const forcedDay = Number(new URLSearchParams(location.search).get('today'));
+  const todayNo = [1, 2, 3].includes(forcedDay) ? forcedDay : kstDay(now) - kstDay(tripStart) + 1;
+  const todayDay = document.querySelectorAll('#plan .day')[todayNo - 1];
+  if (todayDay) {
+    const slots = [...todayDay.querySelectorAll('.slot')];
+    const rows = slots.length
+      ? slots.map(s => [s.querySelector('.when').textContent.replace('~', '~​'), s.querySelector('.what b').textContent])
+      : [['', todayDay.querySelector('.day-head .t').textContent]];
+    document.getElementById('today-title').textContent = `📍 오늘은 DAY ${todayNo}`;
+    document.getElementById('today-list').replaceChildren(...rows.map(([when, title]) => {
+      const li = document.createElement('li');
+      const w = document.createElement('span');
+      const t = document.createElement('span');
+      w.className = 'when';
+      w.textContent = when;
+      t.textContent = title;
+      li.append(w, t);
+      return li;
+    }));
+    document.getElementById('today').hidden = false;
+  }
 
   const overlay = document.getElementById('overlay');
   const overlayText = document.getElementById('overlay-text');
@@ -1022,6 +1147,29 @@
     });
   }
 
+  function buildPlaceActions(keyword, copyBtn) {
+    const wrap = document.createElement('div');
+    const q = encodeURIComponent(keyword);
+    wrap.className = 'place-actions';
+    if (copyBtn) wrap.append(copyBtn);
+    [['고덕지도', `https://uri.amap.com/search?keyword=${q}`],
+     ['구글맵', `https://www.google.com/maps/search/?api=1&query=${q}`]].forEach(([label, href]) => {
+      const a = document.createElement('a');
+      a.className = 'btn ghost';
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = label;
+      wrap.append(a);
+    });
+    return wrap;
+  }
+
+  document.querySelectorAll('ul.places:not(#added-places) li').forEach(li => {
+    const copyBtn = li.querySelector('[data-copy]');
+    li.append(buildPlaceActions(copyBtn.dataset.copy, copyBtn));
+  });
+
   function renderPlaces(rows) {
     const list = document.getElementById('added-places');
     list.replaceChildren(...rows.filter(r => r.day === 'place').map(p => {
@@ -1047,15 +1195,16 @@
       by.textContent = `${p.name} 추가`;
       info.append(by);
       li.append(info);
+      let btn = null;
       if (p.zh) {
-        const btn = document.createElement('button');
+        btn = document.createElement('button');
         btn.className = 'btn ghost';
         btn.type = 'button';
         btn.dataset.copy = p.zh;
         btn.textContent = '복사';
         bindCopy(btn);
-        li.append(btn);
       }
+      li.append(buildPlaceActions(p.zh || p.text, btn));
       return li;
     }));
   }
