@@ -4,6 +4,8 @@
 
 const SHEET_NAME = '댓글';
 const DAYS = ['1', '2', '3'];
+// 날짜 칸에 'place'가 들어간 행은 댓글이 아니라 친구들이 추가한 가고 싶은 곳이다
+const PLACE = 'place';
 
 function getSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -23,8 +25,11 @@ function asText(value) {
 function doGet() {
   const rows = getSheet().getDataRange().getValues();
   const comments = rows
-    .filter(row => DAYS.includes(String(row[1])))
-    .map(row => ({ time: row[0], day: String(row[1]), name: String(row[2]), text: String(row[3]) }));
+    .filter(row => DAYS.includes(String(row[1])) || String(row[1]) === PLACE)
+    .map(row => ({
+      time: row[0], day: String(row[1]), name: String(row[2]), text: String(row[3]),
+      zh: String(row[4] || ''), memo: String(row[5] || ''),
+    }));
   return json(comments);
 }
 
@@ -33,9 +38,11 @@ function doPost(e) {
   const day = String(body.day);
   const name = String(body.name || '').trim().slice(0, 20);
   const text = String(body.text || '').trim().slice(0, 500);
-  if (!DAYS.includes(day) || !name || !text) {
+  const zh = String(body.zh || '').trim().slice(0, 50);
+  const memo = String(body.memo || '').trim().slice(0, 100);
+  if ((!DAYS.includes(day) && day !== PLACE) || !name || !text) {
     return json({ ok: false });
   }
-  getSheet().appendRow([new Date(), day, asText(name), asText(text)]);
+  getSheet().appendRow([new Date(), day, asText(name), asText(text), asText(zh), asText(memo)]);
   return json({ ok: true });
 }

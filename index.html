@@ -183,6 +183,8 @@
   .places b { font-size: 16px; }
   .places .desc { display: block; font-size: 13px; color: var(--muted); }
   .places .btn { flex: 0 0 auto; padding: 6px 12px; }
+  #added-places:not(:empty) { border-top: 1px solid var(--line); margin-top: 0; }
+  .places .by { display: block; font-size: 12px; color: var(--pink-deep); font-weight: 700; }
   .comments { list-style: none; margin: 8px 0 0; padding: 0; }
   .comments li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
   .comments .c-head { font-size: 12px; color: var(--muted); font-weight: 700; }
@@ -200,6 +202,16 @@
   .weather .w-temp { font-size: 22px; font-weight: 800; }
   .weather .w-trip { width: 100%; border-top: 1px solid var(--line); padding-top: 10px; font-size: 14px; }
   .weather .w-trip div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .fx-row { display: flex; align-items: flex-end; gap: 8px; margin-top: 8px; }
+  .fx-row label { flex: 1; min-width: 0; }
+  .fx-row label span { display: block; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .fx-row input {
+    font: inherit; font-size: 20px; font-weight: 700; width: 100%; padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 12px; background: #fffafb; color: var(--ink);
+  }
+  .fx-row input::placeholder { color: #dcc4cc; font-weight: 500; }
+  .fx-eq { color: var(--pink-deep); font-size: 20px; padding-bottom: 10px; }
+  .fx p { margin: 8px 0 0; }
 
   .opt { border-left: 3px solid var(--pink); padding-left: 12px; margin: 12px 0; }
   .opt h3 { font-size: 16px; }
@@ -236,7 +248,7 @@
   details.opt > summary::after { content: " ▾"; color: var(--muted); }
   details.opt[open] > summary::after { content: " ▴"; }
   details.opt > ul { margin-top: 6px; }
-  .c-open { width: 100%; margin-top: 10px; }
+  .c-open, .place-open { width: 100%; margin-top: 10px; }
   .c-form[hidden] { display: none; }
   .lv { font-size: 11px; font-weight: 800; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
   .lv.must { background: var(--red); color: #fff; }
@@ -361,6 +373,17 @@
     <div class="muted small" style="width:100%">날씨 정보: Open-Meteo</div>
   </div>
 
+  <div class="card fx">
+    <h3>환율 계산기</h3>
+    <div class="fx-row">
+      <label><span>위안</span><input id="fx-cny" inputmode="decimal" autocomplete="off" placeholder="100"></label>
+      <span class="fx-eq" aria-hidden="true">⇄</span>
+      <label><span>원</span><input id="fx-krw" inputmode="decimal" autocomplete="off" placeholder="20,000"></label>
+    </div>
+    <p class="muted small" id="fx-rate">환율 불러오는 중</p>
+    <p class="muted small">환율 정보: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a></p>
+  </div>
+
   <div class="warn" style="font-size:15px;margin-top:12px">
     📌 <b>E티켓과 호텔 예약내역은 혜란이 꼭 캡처해서 전달해 주기!</b><br>
     받으면 다 같이 날짜, 편명, 터미널, 호텔 이름을 확인해요.
@@ -478,6 +501,15 @@
         <button class="btn ghost" type="button" data-copy="很久以前羊肉串">복사</button>
       </li>
     </ul>
+    <ul class="places" id="added-places"></ul>
+    <button class="btn ghost place-open" type="button">＋ 가고 싶은 곳 추가</button>
+    <form class="c-form" id="place-form" hidden>
+      <input name="author" placeholder="내 이름" maxlength="20" autocomplete="off">
+      <input name="place" placeholder="장소 이름 (예: 상하이타워)" maxlength="40" autocomplete="off">
+      <input name="zh" placeholder="중국어 이름 (선택, 복사 버튼이 생겨요)" maxlength="50" autocomplete="off">
+      <input name="memo" placeholder="한 줄 메모 (선택)" maxlength="100" autocomplete="off">
+      <div class="c-row"><span class="c-status"></span><button class="btn" type="submit">추가</button></div>
+    </form>
     <p class="muted small">복사 버튼으로 중국어 이름을 복사해서 고덕지도나 다중뎬핑에 붙여 넣으면 돼요.</p>
   </div>
 
@@ -832,7 +864,7 @@
   });
   overlay.addEventListener('click', () => { overlay.hidden = true; });
 
-  document.querySelectorAll('[data-copy]').forEach(btn => {
+  function bindCopy(btn) {
     const label = btn.textContent;
     btn.addEventListener('click', () => {
       navigator.clipboard.writeText(btn.dataset.copy)
@@ -840,7 +872,72 @@
         .catch(() => { btn.textContent = '복사 안 됨, 글자를 길게 눌러 복사'; })
         .finally(() => setTimeout(() => { btn.textContent = label; }, 2000));
     });
-  });
+  }
+  document.querySelectorAll('[data-copy]').forEach(bindCopy);
+
+  const FX_URL = 'https://open.er-api.com/v6/latest/CNY';
+  const FX_KEY = 'shanghai2026-fx';
+  // 환율 서버에 닿지 못하고 저장된 값도 없을 때 쓰는 값 (2026-11-02 open.er-api.com 기준)
+  const FX_FALLBACK = { rate: 200.72, date: '2026-11-02' };
+  const cnyInput = document.getElementById('fx-cny');
+  const krwInput = document.getElementById('fx-krw');
+  const rateText = document.getElementById('fx-rate');
+  const isValidFx = v => Boolean(v) && Number.isFinite(v.rate) && v.rate > 0 && /^\d{4}-\d{2}-\d{2}$/.test(v.date);
+  let fx = FX_FALLBACK;
+  try {
+    const saved = JSON.parse(localStorage.getItem(FX_KEY));
+    if (isValidFx(saved)) fx = saved;
+  } catch (e) {
+    // 저장이 막혔거나 값이 깨졌으면 기본값으로 계산한다
+  }
+  let lastFrom = 'cny';
+
+  function parseAmount(value) {
+    const text = value.replace(/,/g, '').trim();
+    const n = Number(text);
+    return text && Number.isFinite(n) && n >= 0 ? n : null;
+  }
+
+  function convert(from) {
+    lastFrom = from;
+    if (from === 'cny') {
+      const cny = parseAmount(cnyInput.value);
+      krwInput.value = cny === null ? '' : Math.round(cny * fx.rate).toLocaleString('ko-KR');
+    } else {
+      const krw = parseAmount(krwInput.value);
+      cnyInput.value = krw === null ? '' : (krw / fx.rate).toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+    }
+  }
+
+  function showRate(note) {
+    const [, m, d] = fx.date.split('-');
+    rateText.textContent = `1위안 = ${fx.rate.toFixed(1)}원 (${Number(m)}/${Number(d)} 기준)${note ? ` ${note}` : ''}`;
+  }
+
+  cnyInput.addEventListener('input', () => convert('cny'));
+  krwInput.addEventListener('input', () => convert('krw'));
+
+  fetch(FX_URL)
+    .then(res => res.json())
+    .then(data => {
+      const next = {
+        rate: data.rates && data.rates.KRW,
+        date: new Date(data.time_last_update_unix * 1000).toISOString().slice(0, 10),
+      };
+      if (data.result !== 'success' || !isValidFx(next)) throw new Error('bad rate');
+      fx = next;
+      try {
+        localStorage.setItem(FX_KEY, JSON.stringify(fx));
+      } catch (e) {
+        // 저장이 막힌 브라우저에서는 다음에 다시 받아 온다
+      }
+      showRate('');
+      convert(lastFrom);
+    })
+    .catch(() => {
+      showRate('인터넷이 안 돼서 마지막으로 받은 환율로 계산해요.');
+      convert(lastFrom);
+    });
 
   const WEATHER_URL = 'https://api.open-meteo.com/v1/forecast?latitude=31.23&longitude=121.47'
     + '&current=temperature_2m,apparent_temperature,weather_code'
@@ -897,7 +994,9 @@
   // 구글 시트 Apps Script 웹 앱 주소. 비어 있으면 댓글 창은 준비 중으로 표시한다
   const COMMENTS_URL = 'https://script.google.com/macros/s/AKfycbxGol8k5ZfGePnBCbAaWkxbAdEyfnf7PlxZpwDwdwanOg_mOfhh7SOeSCzMkFI9eYQhPQ/exec';
   const NAME_KEY = 'shanghai2026-name';
-  const forms = document.querySelectorAll('.c-form');
+  const forms = document.querySelectorAll('.c-form[data-day]');
+  const placeForm = document.getElementById('place-form');
+  const placeOpen = document.querySelector('.place-open');
 
   function formatTime(iso) {
     const d = new Date(iso);
@@ -923,13 +1022,53 @@
     });
   }
 
+  function renderPlaces(rows) {
+    const list = document.getElementById('added-places');
+    list.replaceChildren(...rows.filter(r => r.day === 'place').map(p => {
+      const li = document.createElement('li');
+      const info = document.createElement('div');
+      const name = document.createElement('b');
+      name.textContent = p.text;
+      info.append(name);
+      if (p.zh) {
+        const zh = document.createElement('span');
+        zh.className = 'zh-inline';
+        zh.textContent = ` ${p.zh}`;
+        info.append(zh);
+      }
+      if (p.memo) {
+        const memo = document.createElement('span');
+        memo.className = 'desc';
+        memo.textContent = p.memo;
+        info.append(memo);
+      }
+      const by = document.createElement('span');
+      by.className = 'by';
+      by.textContent = `${p.name} 추가`;
+      info.append(by);
+      li.append(info);
+      if (p.zh) {
+        const btn = document.createElement('button');
+        btn.className = 'btn ghost';
+        btn.type = 'button';
+        btn.dataset.copy = p.zh;
+        btn.textContent = '복사';
+        bindCopy(btn);
+        li.append(btn);
+      }
+      return li;
+    }));
+  }
+
   async function loadComments() {
     const res = await fetch(COMMENTS_URL);
-    renderComments(await res.json());
+    const rows = await res.json();
+    renderComments(rows);
+    renderPlaces(rows);
   }
 
   if (!COMMENTS_URL) {
-    document.querySelectorAll('.c-open').forEach(btn => {
+    document.querySelectorAll('.c-open, .place-open').forEach(btn => {
       btn.disabled = true;
       btn.textContent = '댓글 기능 준비 중이에요';
     });
@@ -994,6 +1133,52 @@
         btn.disabled = false;
       }
     });
+  });
+
+  placeForm.elements.author.value = savedName;
+  placeOpen.addEventListener('click', () => {
+    placeOpen.hidden = true;
+    placeForm.hidden = false;
+    placeForm.elements.place.focus();
+  });
+  placeForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!COMMENTS_URL) return;
+    const btn = placeForm.querySelector('button');
+    const status = placeForm.querySelector('.c-status');
+    const f = placeForm.elements;
+    const author = f.author.value.trim();
+    const place = f.place.value.trim();
+    if (!author || !place) {
+      status.textContent = '이름과 장소 이름을 적어 주세요';
+      return;
+    }
+    btn.disabled = true;
+    status.textContent = '저장 중...';
+    try {
+      localStorage.setItem(NAME_KEY, author);
+    } catch (err) {
+      // 이름 기억만 못 할 뿐 저장은 계속한다
+    }
+    try {
+      const res = await fetch(COMMENTS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ day: 'place', name: author, text: place, zh: f.zh.value.trim(), memo: f.memo.value.trim() }),
+      });
+      const result = await res.json();
+      if (!result.ok) throw new Error('rejected');
+      f.place.value = '';
+      f.zh.value = '';
+      f.memo.value = '';
+      status.textContent = '';
+      placeForm.hidden = true;
+      placeOpen.hidden = false;
+      await loadComments();
+    } catch (err) {
+      status.textContent = '저장하지 못했어요. 잠시 후 다시 눌러 주세요';
+    } finally {
+      btn.disabled = false;
+    }
   });
 </script>
 </body>
